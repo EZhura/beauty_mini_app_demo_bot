@@ -1,6 +1,21 @@
-const tg = window.Telegram.WebApp;
+const tg = window.Telegram ? .WebApp;
 
-tg.expand();
+if (tg) {
+    tg.ready();
+    tg.expand();
+}
+
+const closeAppButton = document.getElementById("closeAppButton");
+
+if (closeAppButton) {
+    closeAppButton.addEventListener("click", function () {
+        if (tg) {
+            tg.close();
+        } else {
+            window.close();
+        }
+    });
+}
 
 const form = document.getElementById("requestForm");
 
@@ -12,7 +27,11 @@ form.addEventListener("submit", function (event) {
     const comment = document.getElementById("comment").value.trim();
 
     if (!clientName) {
-        tg.showAlert("Пожалуйста, укажите имя.");
+        if (tg) {
+            tg.showAlert("Пожалуйста, укажите имя.");
+        } else {
+            alert("Пожалуйста, укажите имя.");
+        }
         return;
     }
 
@@ -22,9 +41,18 @@ form.addEventListener("submit", function (event) {
         comment: comment || "Без комментария"
     };
 
-    tg.showAlert(
-        `Заявка подготовлена:\n\nИмя: ${requestData.name}\nУслуга: ${requestData.service}`
-    );
+    const jsonData = JSON.stringify(requestData);
 
-    console.log("Данные заявки:", requestData);
+    if (tg && tg.sendData) {
+        tg.sendData(jsonData);
+    } else {
+        alert(
+            "Демо-режим в браузере.\n\n" +
+            `Имя: ${requestData.name}\n` +
+            `Услуга: ${requestData.service}\n` +
+            `Комментарий: ${requestData.comment}`
+        );
+
+        console.log("Данные заявки:", requestData);
+    }
 });
