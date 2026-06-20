@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Beauty Studio Mini App</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Официальный скрипт Telegram Mini Apps -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div class="top-actions">
+            <button type="button" id="closeAppButton" class="close-button">
+                ✕ Закрыть
+            </button>
+        </div>
+        <header class="hero">
+            <p class="tag">Beauty Studio Demo</p>
+            <h1>Мини-приложение салона внутри Telegram</h1>
+            <p class="subtitle">
+                Услуги, цены, акции и заявка на запись в одном удобном интерфейсе.
+            </p>
+        </header>
+
+        <section class="section">
+            <h2>Популярные услуги</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Маникюр</h3>
+                    <p>Классический, комбинированный, покрытие гель-лаком.</p>
+                    <span>от 1 800 ₽</span>
+                </div>
+
+                <div class="card">
+                    <h3>Брови</h3>
+                    <p>Коррекция, окрашивание, долговременная укладка.</p>
+                    <span>от 1 200 ₽</span>
+                </div>
+
+                <div class="card">
+                    <h3>Окрашивание</h3>
+                    <p>Консультация, подбор оттенка, сложные техники.</p>
+                    <span>от 4 500 ₽</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Акция</h2>
+
+            <div class="promo">
+                <h3>Скидка 10% на первое посещение</h3>
+                <p>
+                    Для новых клиентов при записи через мини-приложение.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Быстрая заявка</h2>
+
+            <form id="requestForm" class="form">
+                <label>
+                    Ваше имя
+                    <input type="text" id="clientName" placeholder="Например, Анна" />
+                </label>
+
+                <label>
+                    Какая услуга интересует?
+                    <select id="service">
+                        <option value="Маникюр">Маникюр</option>
+                        <option value="Брови">Брови</option>
+                        <option value="Окрашивание">Окрашивание</option>
+                    </select>
+                </label>
+
+                <label>
+                    Комментарий
+                    <textarea id="comment" placeholder="Например, хочу записаться на выходные"></textarea>
+                </label>
+
+                <button type="submit" class="main-button">
+                    Отправить заявку
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

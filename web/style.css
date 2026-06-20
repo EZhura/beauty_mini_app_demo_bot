@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f2ff;
+    color: #222222;
+}
+
+.app {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 18px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #8d6cff, #c7b6ff);
+    color: white;
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 22px;
+}
+
+.tag {
+    margin: 0 0 10px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+h1 {
+    margin: 0;
+    font-size: 26px;
+    line-height: 1.15;
+}
+
+.subtitle {
+    margin: 14px 0 0;
+    font-size: 15px;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(55, 36, 110, 0.08);
+}
+
+.card h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555555;
+}
+
+.card span {
+    font-weight: bold;
+    color: #6c4bd8;
+}
+
+.promo {
+    background: #fff3d8;
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.promo h3 {
+    margin: 0 0 8px;
+}
+
+.promo p {
+    margin: 0;
+    color: #5a4a2a;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(55, 36, 110, 0.08);
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #ddd6f3;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+
+textarea {
+    min-height: 86px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #8d6cff;
+}
+
+.main-button {
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    background: #6c4bd8;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.main-button:active {
+    transform: scale(0.98);
+}
