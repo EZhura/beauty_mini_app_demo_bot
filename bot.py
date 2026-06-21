@@ -56,7 +56,18 @@ BASE_DIR = Path(__file__).resolve().parent
 WEB_DIR = BASE_DIR / "web"
 
 # =========================
-# КЛАВИАТУРА БОТА
+# ДЕМО-ХРАНИЛИЩЕ ЗАЯВОК
+# =========================
+# Важно: это временное хранилище в памяти.
+# Оно работает, пока Render-сервис не перезапущен.
+# Позже можно заменить на базу данных или Google Sheets.
+
+REQUESTS = {}
+REQUEST_COUNTER = 0
+
+
+# =========================
+# КЛАВИАТУРЫ
 # =========================
 
 def main_keyboard() -> ReplyKeyboardMarkup:
@@ -78,18 +89,19 @@ def main_keyboard() -> ReplyKeyboardMarkup:
         one_time_keyboard=False,
     )
 
-def admin_request_keyboard(client_telegram_id: int, client_username: str | None = None) -> InlineKeyboardMarkup:
+
+def admin_request_keyboard(request_id: int, client_username: str | None = None) -> InlineKeyboardMarkup:
     keyboard = [
         [
             InlineKeyboardButton(
                 text="✅ Подтвердить запись",
-                callback_data=f"confirm_request:{client_telegram_id}",
+                callback_data=f"confirm_request:{request_id}",
             )
         ],
         [
             InlineKeyboardButton(
                 text="💬 Нужно связаться",
-                callback_data=f"need_contact:{client_telegram_id}",
+                callback_data=f"need_contact:{request_id}",
             )
         ],
     ]
@@ -105,6 +117,7 @@ def admin_request_keyboard(client_telegram_id: int, client_username: str | None 
         )
 
     return InlineKeyboardMarkup(keyboard)
+
 
 def start_text() -> str:
     return (
@@ -138,7 +151,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         "1. Нажмите кнопку «Открыть Mini App» внизу чата.\n"
         "2. Выберите услугу или нажмите «Записаться» на карточке услуги.\n"
         "3. Заполните имя, телефон, мастера, дату и время.\n"
-        "4. Нажмите «Отправить заявку».\n\n"
+        "4. Нажмите «Отправить заявку».\n"
+        "5. Администратор сможет подтвердить заявку одной кнопкой.\n\n"
         "Если нужно узнать chat_id администратора, отправьте команду /myid.",
         reply_markup=main_keyboard(),
     )
@@ -160,6 +174,8 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     """
     Получает данные, которые Mini App отправляет через Telegram.WebApp.sendData().
     """
+    global REQUEST_COUNTER
+
     if not update.message or not update.message.web_app_data:
         return
 
@@ -185,16 +201,40 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     user = update.effective_user
 
     if user:
+        client_chat_id = user.id
         telegram_id = user.id
         telegram_username = f"@{user.username}" if user.username else "username не указан"
+        username_for_button = user.username if user.username else None
         telegram_name = user.full_name or "Имя в Telegram не указано"
     else:
+        client_chat_id = None
         telegram_id = "не указан"
         telegram_username = "не указан"
+        username_for_button = None
         telegram_name = "не указано"
+
+    REQUEST_COUNTER += 1
+    request_id = REQUEST_COUNTER
+
+    REQUESTS[request_id] = {
+        "request_id": request_id,
+        "client_chat_id": client_chat_id,
+        "name": name,
+        "phone": phone,
+        "service": service,
+        "master": master,
+        "visit_date": visit_date,
+        "preferred_time": preferred_time,
+        "comment": comment,
+        "telegram_name": telegram_name,
+        "telegram_username": telegram_username,
+        "telegram_id": telegram_id,
+        "status": "требуется подтверждение администратором",
+    }
 
     client_message = (
         "✅ Заявка получена\n\n"
+        f"Номер заявки: #{request_id}\n"
         f"Имя: {name}\n"
         f"Телефон: {phone}\n"
         f"Услуга: {service}\n"
@@ -209,6 +249,7 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
 
     admin_message = (
         "📩 Новая заявка из Mini App\n\n"
+        f"Номер заявки: #{request_id}\n"
         f"Имя клиента: {name}\n"
         f"Телефон: {phone}\n"
         f"Услуга: {service}\n"
@@ -226,14 +267,11 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
 
     if ADMIN_CHAT_ID:
         try:
-            username_for_button = user.username if user and user.username else None
-            client_telegram_id_for_button = user.id if user else 0
-
             await context.bot.send_message(
                 chat_id=int(ADMIN_CHAT_ID),
                 text=admin_message,
                 reply_markup=admin_request_keyboard(
-                    client_telegram_id=client_telegram_id_for_button,
+                    request_id=request_id,
                     client_username=username_for_button,
                 ),
             )
@@ -241,6 +279,7 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
             logger.exception("Не удалось отправить заявку администратору")
     else:
         logger.warning("ADMIN_CHAT_ID не задан. Заявка администратору не отправлена.")
+
 
 async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -251,7 +290,10 @@ async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_T
     await query.answer()
 
     if ADMIN_CHAT_ID and str(query.from_user.id) != str(ADMIN_CHAT_ID):
-        await query.answer("Эта кнопка доступна только администратору.", show_alert=True)
+        await query.answer(
+            "Эта кнопка доступна только администратору.",
+            show_alert=True,
+        )
         return
 
     data = query.data or ""
@@ -259,56 +301,107 @@ async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_T
     if ":" not in data:
         return
 
-    action, client_id_text = data.split(":", 1)
+    action, request_id_text = data.split(":", 1)
 
     try:
-        client_chat_id = int(client_id_text)
+        request_id = int(request_id_text)
     except ValueError:
-        await query.answer("Не удалось определить клиента.", show_alert=True)
+        await query.answer(
+            "Не удалось определить номер заявки.",
+            show_alert=True,
+        )
         return
+
+    request_data = REQUESTS.get(request_id)
+
+    if not request_data:
+        await query.answer(
+            "Заявка не найдена. Возможно, сервис был перезапущен.",
+            show_alert=True,
+        )
+        return
+
+    client_chat_id = request_data.get("client_chat_id")
+
+    if not client_chat_id:
+        await query.answer(
+            "Не удалось определить Telegram клиента.",
+            show_alert=True,
+        )
+        return
+
+    name = request_data.get("name", "Не указано")
+    service = request_data.get("service", "Не указано")
+    master = request_data.get("master", "Любой мастер")
+    visit_date = request_data.get("visit_date", "Не указано")
+    preferred_time = request_data.get("preferred_time", "Не указано")
 
     if action == "confirm_request":
         try:
+            request_data["status"] = "запись подтверждена администратором"
+
             await context.bot.send_message(
                 chat_id=client_chat_id,
                 text=(
                     "✅ Ваша запись подтверждена\n\n"
-                    "Администратор подтвердил заявку.\n"
-                    "Если потребуется уточнение, с вами свяжутся."
+                    f"Номер заявки: #{request_id}\n"
+                    f"Услуга: {service}\n"
+                    f"Мастер: {master}\n"
+                    f"Дата: {visit_date}\n"
+                    f"Время: {preferred_time}\n\n"
+                    "Ждём вас в салоне!\n"
+                    "Если потребуется уточнение, администратор свяжется с вами."
                 ),
             )
 
+            current_text = query.message.text if query.message else ""
+
             await query.edit_message_text(
                 text=(
-                    f"{query.message.text}\n\n"
+                    f"{current_text}\n\n"
                     "✅ Статус: запись подтверждена администратором"
                 )
             )
 
         except Exception:
             logger.exception("Не удалось подтвердить заявку")
-            await query.answer("Не удалось отправить подтверждение клиенту.", show_alert=True)
+            await query.answer(
+                "Не удалось отправить подтверждение клиенту.",
+                show_alert=True,
+            )
 
     elif action == "need_contact":
         try:
+            request_data["status"] = "требуется уточнение с клиентом"
+
             await context.bot.send_message(
                 chat_id=client_chat_id,
                 text=(
-                    "💬 Администратору нужно уточнить детали записи.\n\n"
+                    "💬 Администратору нужно уточнить детали записи\n\n"
+                    f"Номер заявки: #{request_id}\n"
+                    f"Услуга: {service}\n"
+                    f"Дата: {visit_date}\n"
+                    f"Время: {preferred_time}\n\n"
                     "Пожалуйста, ожидайте сообщение или звонок."
                 ),
             )
 
+            current_text = query.message.text if query.message else ""
+
             await query.edit_message_text(
                 text=(
-                    f"{query.message.text}\n\n"
+                    f"{current_text}\n\n"
                     "💬 Статус: требуется уточнение с клиентом"
                 )
             )
 
         except Exception:
             logger.exception("Не удалось отправить клиенту сообщение об уточнении")
-            await query.answer("Не удалось отправить сообщение клиенту.", show_alert=True)
+            await query.answer(
+                "Не удалось отправить сообщение клиенту.",
+                show_alert=True,
+            )
+
 
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not update.message:
