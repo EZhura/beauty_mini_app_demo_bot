@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
 
-            if (tg) {
+            if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.impactOccurred("light");
             }
         });
@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const clientPhoneInput = document.getElementById("clientPhone");
         const serviceInput = document.getElementById("service");
         const masterInput = document.getElementById("master");
+        const visitDateInput = document.getElementById("visitDate");
         const preferredTimeInput = document.getElementById("preferredTime");
         const commentInput = document.getElementById("comment");
         const submitButton = form.querySelector(".main-button");
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             !clientPhoneInput ||
             !serviceInput ||
             !masterInput ||
+            !visitDateInput ||
             !preferredTimeInput ||
             !commentInput
         ) {
@@ -77,7 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const clientPhone = clientPhoneInput.value.trim();
         const service = serviceInput.value;
         const master = masterInput.value;
-        const preferredTime = preferredTimeInput.value.trim();
+        const visitDate = visitDateInput.value;
+        const preferredTime = preferredTimeInput.value;
         const comment = commentInput.value.trim();
 
         if (!clientName) {
@@ -98,12 +101,22 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        if (!visitDate) {
+            if (tg) {
+                tg.showAlert("Пожалуйста, выберите дату визита.");
+            } else {
+                alert("Пожалуйста, выберите дату визита.");
+            }
+            return;
+        }
+
         const requestData = {
             name: clientName,
             phone: clientPhone,
             service: service,
             master: master,
-            preferred_time: preferredTime || "Не указано",
+            visit_date: visitDate,
+            preferred_time: preferredTime,
             comment: comment || "Без комментария"
         };
 
@@ -130,7 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
             submitButton.textContent = "Заявка отправляется...";
         }
 
-        tg.HapticFeedback.notificationOccurred("success");
+        if (tg.HapticFeedback) {
+            tg.HapticFeedback.notificationOccurred("success");
+        }
+
         tg.showAlert("Заявка отправляется...");
 
         setTimeout(function () {

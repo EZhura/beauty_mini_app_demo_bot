@@ -106,8 +106,9 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     await update.message.reply_text(
         "Как пользоваться демо:\n\n"
         "1. Нажмите кнопку «Открыть Mini App» внизу чата.\n"
-        "2. Заполните имя, услугу и комментарий.\n"
-        "3. Нажмите «Отправить заявку».\n\n"
+        "2. Выберите услугу или нажмите «Записаться» на карточке услуги.\n"
+        "3. Заполните имя, телефон, мастера, дату и время.\n"
+        "4. Нажмите «Отправить заявку».\n\n"
         "Если нужно узнать chat_id администратора, отправьте команду /myid.",
         reply_markup=main_keyboard(),
     )
@@ -147,6 +148,7 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     phone = data.get("phone", "Не указано")
     service = data.get("service", "Не указано")
     master = data.get("master", "Любой мастер")
+    visit_date = data.get("visit_date", "Не указано")
     preferred_time = data.get("preferred_time", "Не указано")
     comment = data.get("comment", "Без комментария")
 
@@ -156,9 +158,10 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
         f"Телефон: {phone}\n"
         f"Услуга: {service}\n"
         f"Мастер: {master}\n"
-        f"Желаемое время: {preferred_time}\n"
+        f"Дата визита: {visit_date}\n"
+        f"Выбранное время: {preferred_time}\n"
         f"Комментарий: {comment}\n\n"
-        "Администратор получил информацию и сможет связаться с вами."
+        "Администратор получил информацию и сможет связаться с вами для подтверждения записи."
     )
 
     await update.message.reply_text(client_message)
@@ -169,8 +172,10 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
         f"Телефон: {phone}\n"
         f"Услуга: {service}\n"
         f"Мастер: {master}\n"
-        f"Желаемое время: {preferred_time}\n"
+        f"Дата визита: {visit_date}\n"
+        f"Выбранное время: {preferred_time}\n"
         f"Комментарий: {comment}\n\n"
+        "Статус: требуется подтверждение администратором\n"
         "Источник: Beauty Mini App Demo"
     )
 

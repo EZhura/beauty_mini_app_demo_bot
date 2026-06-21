@@ -61,6 +61,7 @@
                 </div>
             </div>
         </section>
+
         <section class="section">
             <h2>Акция</h2>
 
@@ -106,9 +107,26 @@
                 </label>
 
                 <label>
-                    Желаемое время
-                    <input type="text" id="preferredTime" placeholder="Например, завтра после 15:00" />
+                    Дата визита
+                    <input type="date" id="visitDate" />
                 </label>
+
+                <label>
+                    Время
+                    <select id="preferredTime">
+                        <option value="10:00">10:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="Хочу подобрать другое время">Хочу подобрать другое время</option>
+                    </select>
+                </label>
+
+                <p class="demo-note">
+                    В демо-версии дата и время отправляются администратору для подтверждения.
+                    В рабочей версии можно подключить автоматическую проверку свободных слотов.
+                </p>
 
                 <label>
                     Комментарий
