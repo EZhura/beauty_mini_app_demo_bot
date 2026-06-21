@@ -10,11 +10,14 @@ from telegram import (
     KeyboardButton,
     ReplyKeyboardMarkup,
     WebAppInfo,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
 )
 from telegram.ext import (
     Application,
     CommandHandler,
     MessageHandler,
+    CallbackQueryHandler,
     ContextTypes,
     filters,
 )
@@ -75,6 +78,33 @@ def main_keyboard() -> ReplyKeyboardMarkup:
         one_time_keyboard=False,
     )
 
+def admin_request_keyboard(client_telegram_id: int, client_username: str | None = None) -> InlineKeyboardMarkup:
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                text="✅ Подтвердить запись",
+                callback_data=f"confirm_request:{client_telegram_id}",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="💬 Нужно связаться",
+                callback_data=f"need_contact:{client_telegram_id}",
+            )
+        ],
+    ]
+
+    if client_username:
+        keyboard.append(
+            [
+                InlineKeyboardButton(
+                    text="Открыть Telegram клиента",
+                    url=f"https://t.me/{client_username}",
+                )
+            ]
+        )
+
+    return InlineKeyboardMarkup(keyboard)
 
 def start_text() -> str:
     return (
@@ -196,15 +226,89 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
 
     if ADMIN_CHAT_ID:
         try:
+            username_for_button = user.username if user and user.username else None
+            client_telegram_id_for_button = user.id if user else 0
+
             await context.bot.send_message(
                 chat_id=int(ADMIN_CHAT_ID),
                 text=admin_message,
+                reply_markup=admin_request_keyboard(
+                    client_telegram_id=client_telegram_id_for_button,
+                    client_username=username_for_button,
+                ),
             )
         except Exception:
             logger.exception("Не удалось отправить заявку администратору")
     else:
         logger.warning("ADMIN_CHAT_ID не задан. Заявка администратору не отправлена.")
 
+async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    query = update.callback_query
+
+    if not query:
+        return
+
+    await query.answer()
+
+    if ADMIN_CHAT_ID and str(query.from_user.id) != str(ADMIN_CHAT_ID):
+        await query.answer("Эта кнопка доступна только администратору.", show_alert=True)
+        return
+
+    data = query.data or ""
+
+    if ":" not in data:
+        return
+
+    action, client_id_text = data.split(":", 1)
+
+    try:
+        client_chat_id = int(client_id_text)
+    except ValueError:
+        await query.answer("Не удалось определить клиента.", show_alert=True)
+        return
+
+    if action == "confirm_request":
+        try:
+            await context.bot.send_message(
+                chat_id=client_chat_id,
+                text=(
+                    "✅ Ваша запись подтверждена\n\n"
+                    "Администратор подтвердил заявку.\n"
+                    "Если потребуется уточнение, с вами свяжутся."
+                ),
+            )
+
+            await query.edit_message_text(
+                text=(
+                    f"{query.message.text}\n\n"
+                    "✅ Статус: запись подтверждена администратором"
+                )
+            )
+
+        except Exception:
+            logger.exception("Не удалось подтвердить заявку")
+            await query.answer("Не удалось отправить подтверждение клиенту.", show_alert=True)
+
+    elif action == "need_contact":
+        try:
+            await context.bot.send_message(
+                chat_id=client_chat_id,
+                text=(
+                    "💬 Администратору нужно уточнить детали записи.\n\n"
+                    "Пожалуйста, ожидайте сообщение или звонок."
+                ),
+            )
+
+            await query.edit_message_text(
+                text=(
+                    f"{query.message.text}\n\n"
+                    "💬 Статус: требуется уточнение с клиентом"
+                )
+            )
+
+        except Exception:
+            logger.exception("Не удалось отправить клиенту сообщение об уточнении")
+            await query.answer("Не удалось отправить сообщение клиенту.", show_alert=True)
 
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not update.message:
@@ -295,6 +399,7 @@ async def main() -> None:
     telegram_application.add_handler(CommandHandler("start", start))
     telegram_application.add_handler(CommandHandler("help", help_command))
     telegram_application.add_handler(CommandHandler("myid", myid_command))
+    telegram_application.add_handler(CallbackQueryHandler(admin_callback_handler))
 
     telegram_application.add_handler(
         MessageHandler(filters.StatusUpdate.WEB_APP_DATA, web_app_data_handler)
