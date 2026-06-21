@@ -152,6 +152,17 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     preferred_time = data.get("preferred_time", "Не указано")
     comment = data.get("comment", "Без комментария")
 
+    user = update.effective_user
+
+    if user:
+        telegram_id = user.id
+        telegram_username = f"@{user.username}" if user.username else "username не указан"
+        telegram_name = user.full_name or "Имя в Telegram не указано"
+    else:
+        telegram_id = "не указан"
+        telegram_username = "не указан"
+        telegram_name = "не указано"
+
     client_message = (
         "✅ Заявка получена\n\n"
         f"Имя: {name}\n"
@@ -175,6 +186,10 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
         f"Дата визита: {visit_date}\n"
         f"Выбранное время: {preferred_time}\n"
         f"Комментарий: {comment}\n\n"
+        "Telegram-данные клиента:\n"
+        f"Имя в Telegram: {telegram_name}\n"
+        f"Username: {telegram_username}\n"
+        f"Telegram ID: {telegram_id}\n\n"
         "Статус: требуется подтверждение администратором\n"
         "Источник: Beauty Mini App Demo"
     )
