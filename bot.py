@@ -7,8 +7,8 @@ from pathlib import Path
 from aiohttp import web
 from telegram import (
     Update,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
+    KeyboardButton,
+    ReplyKeyboardMarkup,
     WebAppInfo,
 )
 from telegram.ext import (
@@ -53,35 +53,41 @@ BASE_DIR = Path(__file__).resolve().parent
 WEB_DIR = BASE_DIR / "web"
 
 # =========================
-# TELEGRAM-БОТ
+# КЛАВИАТУРА БОТА
 # =========================
 
-def main_keyboard() -> InlineKeyboardMarkup:
+def main_keyboard() -> ReplyKeyboardMarkup:
     keyboard = [
         [
-            InlineKeyboardButton(
+            KeyboardButton(
                 text="Открыть Mini App",
                 web_app=WebAppInfo(url=MINI_APP_URL),
             )
         ],
         [
-            InlineKeyboardButton(
-                text="Открыть в браузере",
-                url=MINI_APP_URL,
-            )
+            KeyboardButton(text="Помощь")
         ],
     ]
 
-    return InlineKeyboardMarkup(keyboard)
+    return ReplyKeyboardMarkup(
+        keyboard,
+        resize_keyboard=True,
+        one_time_keyboard=False,
+    )
 
 
 def start_text() -> str:
     return (
         "Здравствуйте!\n\n"
         "Это демо Telegram Mini App для салона красоты.\n\n"
-        "Внутри можно посмотреть услуги, цены, акцию и отправить заявку."
+        "Внутри можно посмотреть услуги, цены, акцию и отправить заявку.\n\n"
+        "Нажмите кнопку «Открыть Mini App» внизу чата."
     )
 
+
+# =========================
+# ОБРАБОТЧИКИ TELEGRAM-БОТА
+# =========================
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not update.message:
@@ -98,8 +104,12 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         return
 
     await update.message.reply_text(
-        "Нажмите /start, чтобы открыть Mini App.\n\n"
-        "Если нужно узнать chat_id администратора, отправьте команду /myid."
+        "Как пользоваться демо:\n\n"
+        "1. Нажмите кнопку «Открыть Mini App» внизу чата.\n"
+        "2. Заполните имя, услугу и комментарий.\n"
+        "3. Нажмите «Отправить заявку».\n\n"
+        "Если нужно узнать chat_id администратора, отправьте команду /myid.",
+        reply_markup=main_keyboard(),
     )
 
 
@@ -171,8 +181,14 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     if not update.message:
         return
 
+    text = update.message.text
+
+    if text == "Помощь":
+        await help_command(update, context)
+        return
+
     await update.message.reply_text(
-        "Нажмите /start, чтобы открыть Mini App.",
+        "Нажмите кнопку «Открыть Mini App» внизу чата.",
         reply_markup=main_keyboard(),
     )
 

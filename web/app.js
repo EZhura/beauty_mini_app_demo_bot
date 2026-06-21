@@ -1,25 +1,30 @@
-const tg = window.Telegram && window.Telegram.WebApp;
+document.addEventListener("DOMContentLoaded", function () {
+    const tg = window.Telegram && window.Telegram.WebApp;
 
-if (tg) {
-    tg.ready();
-    tg.expand();
-}
+    if (tg) {
+        tg.ready();
+        tg.expand();
+    }
 
-const closeAppButton = document.getElementById("closeAppButton");
+    const closeAppButton = document.getElementById("closeAppButton");
 
-if (closeAppButton) {
-    closeAppButton.addEventListener("click", function () {
-        if (tg) {
-            tg.close();
-        } else {
-            alert("Это демо открыто в браузере. Закройте вкладку вручную.");
-        }
-    });
-}
+    if (closeAppButton) {
+        closeAppButton.addEventListener("click", function () {
+            if (tg) {
+                tg.close();
+            } else {
+                alert("Это демо открыто в браузере. Закройте вкладку вручную.");
+            }
+        });
+    }
 
-const form = document.getElementById("requestForm");
+    const form = document.getElementById("requestForm");
 
-if (form) {
+    if (!form) {
+        alert("Ошибка: форма requestForm не найдена.");
+        return;
+    }
+
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -28,7 +33,7 @@ if (form) {
         const commentInput = document.getElementById("comment");
 
         if (!clientNameInput || !serviceInput || !commentInput) {
-            alert("Ошибка формы: не найдены поля заявки.");
+            alert("Ошибка: не найдены поля формы.");
             return;
         }
 
@@ -53,21 +58,26 @@ if (form) {
 
         const jsonData = JSON.stringify(requestData);
 
-        console.log("Данные заявки:", requestData);
-        console.log("Telegram WebApp object:", tg);
-
-        if (tg && typeof tg.sendData === "function") {
-            tg.sendData(jsonData);
-        } else {
+        if (!tg) {
             alert(
-                "Заявка НЕ отправлена в Telegram.\n\n" +
-                "Скорее всего, Mini App открыт как обычная страница, а не через кнопку Telegram Web App.\n\n" +
-                `Имя: ${requestData.name}\n` +
-                `Услуга: ${requestData.service}\n` +
-                `Комментарий: ${requestData.comment}`
+                "Mini App открыт не внутри Telegram.\n\n" +
+                "Данные не могут быть отправлены в бота."
             );
+            return;
         }
+
+        if (typeof tg.sendData !== "function") {
+            tg.showAlert(
+                "Mini App открыт, но способ открытия не поддерживает отправку данных.\n\n" +
+                "Откройте Mini App через нижнюю кнопку Telegram."
+            );
+            return;
+        }
+
+        tg.showAlert("Отправляю заявку в Telegram...");
+
+        setTimeout(function () {
+            tg.sendData(jsonData);
+        }, 500);
     });
-} else {
-    alert("Форма заявки не найдена на странице.");
-}
+});
