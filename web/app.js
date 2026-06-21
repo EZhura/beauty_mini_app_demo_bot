@@ -1,4 +1,4 @@
-const tg = window.Telegram ? .WebApp;
+const tg = window.Telegram && window.Telegram.WebApp;
 
 if (tg) {
     tg.ready();
@@ -12,47 +12,49 @@ if (closeAppButton) {
         if (tg) {
             tg.close();
         } else {
-            window.close();
+            alert("Это демо открыто в браузере. Закройте вкладку вручную.");
         }
     });
 }
 
 const form = document.getElementById("requestForm");
 
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
+if (form) {
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    const clientName = document.getElementById("clientName").value.trim();
-    const service = document.getElementById("service").value;
-    const comment = document.getElementById("comment").value.trim();
+        const clientName = document.getElementById("clientName").value.trim();
+        const service = document.getElementById("service").value;
+        const comment = document.getElementById("comment").value.trim();
 
-    if (!clientName) {
-        if (tg) {
-            tg.showAlert("Пожалуйста, укажите имя.");
-        } else {
-            alert("Пожалуйста, укажите имя.");
+        if (!clientName) {
+            if (tg) {
+                tg.showAlert("Пожалуйста, укажите имя.");
+            } else {
+                alert("Пожалуйста, укажите имя.");
+            }
+            return;
         }
-        return;
-    }
 
-    const requestData = {
-        name: clientName,
-        service: service,
-        comment: comment || "Без комментария"
-    };
+        const requestData = {
+            name: clientName,
+            service: service,
+            comment: comment || "Без комментария"
+        };
 
-    const jsonData = JSON.stringify(requestData);
+        const jsonData = JSON.stringify(requestData);
 
-    if (tg && tg.sendData) {
-        tg.sendData(jsonData);
-    } else {
-        alert(
-            "Демо-режим в браузере.\n\n" +
-            `Имя: ${requestData.name}\n` +
-            `Услуга: ${requestData.service}\n` +
-            `Комментарий: ${requestData.comment}`
-        );
+        if (tg && tg.sendData) {
+            tg.sendData(jsonData);
+        } else {
+            alert(
+                "Демо-режим в браузере.\n\n" +
+                `Имя: ${requestData.name}\n` +
+                `Услуга: ${requestData.service}\n` +
+                `Комментарий: ${requestData.comment}`
+            );
 
-        console.log("Данные заявки:", requestData);
-    }
-});
+            console.log("Данные заявки:", requestData);
+        }
+    });
+}
