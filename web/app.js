@@ -23,9 +23,18 @@ if (form) {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const clientName = document.getElementById("clientName").value.trim();
-        const service = document.getElementById("service").value;
-        const comment = document.getElementById("comment").value.trim();
+        const clientNameInput = document.getElementById("clientName");
+        const serviceInput = document.getElementById("service");
+        const commentInput = document.getElementById("comment");
+
+        if (!clientNameInput || !serviceInput || !commentInput) {
+            alert("Ошибка формы: не найдены поля заявки.");
+            return;
+        }
+
+        const clientName = clientNameInput.value.trim();
+        const service = serviceInput.value;
+        const comment = commentInput.value.trim();
 
         if (!clientName) {
             if (tg) {
@@ -44,17 +53,21 @@ if (form) {
 
         const jsonData = JSON.stringify(requestData);
 
-        if (tg && tg.sendData) {
+        console.log("Данные заявки:", requestData);
+        console.log("Telegram WebApp object:", tg);
+
+        if (tg && typeof tg.sendData === "function") {
             tg.sendData(jsonData);
         } else {
             alert(
-                "Демо-режим в браузере.\n\n" +
+                "Заявка НЕ отправлена в Telegram.\n\n" +
+                "Скорее всего, Mini App открыт как обычная страница, а не через кнопку Telegram Web App.\n\n" +
                 `Имя: ${requestData.name}\n` +
                 `Услуга: ${requestData.service}\n` +
                 `Комментарий: ${requestData.comment}`
             );
-
-            console.log("Данные заявки:", requestData);
         }
     });
+} else {
+    alert("Форма заявки не найдена на странице.");
 }
