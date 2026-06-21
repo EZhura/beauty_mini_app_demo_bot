@@ -29,16 +29,29 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         const clientNameInput = document.getElementById("clientName");
+        const clientPhoneInput = document.getElementById("clientPhone");
         const serviceInput = document.getElementById("service");
+        const masterInput = document.getElementById("master");
+        const preferredTimeInput = document.getElementById("preferredTime");
         const commentInput = document.getElementById("comment");
 
-        if (!clientNameInput || !serviceInput || !commentInput) {
+        if (
+            !clientNameInput ||
+            !clientPhoneInput ||
+            !serviceInput ||
+            !masterInput ||
+            !preferredTimeInput ||
+            !commentInput
+        ) {
             alert("Ошибка: не найдены поля формы.");
             return;
         }
 
         const clientName = clientNameInput.value.trim();
+        const clientPhone = clientPhoneInput.value.trim();
         const service = serviceInput.value;
+        const master = masterInput.value;
+        const preferredTime = preferredTimeInput.value.trim();
         const comment = commentInput.value.trim();
 
         if (!clientName) {
@@ -50,9 +63,21 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        if (!clientPhone) {
+            if (tg) {
+                tg.showAlert("Пожалуйста, укажите телефон.");
+            } else {
+                alert("Пожалуйста, укажите телефон.");
+            }
+            return;
+        }
+
         const requestData = {
             name: clientName,
+            phone: clientPhone,
             service: service,
+            master: master,
+            preferred_time: preferredTime || "Не указано",
             comment: comment || "Без комментария"
         };
 
@@ -74,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        tg.showAlert("Отправляю заявку в Telegram...");
+        tg.showAlert("Заявка отправляется...");
 
         setTimeout(function () {
             tg.sendData(jsonData);

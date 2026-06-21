@@ -144,13 +144,19 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
         return
 
     name = data.get("name", "Не указано")
+    phone = data.get("phone", "Не указано")
     service = data.get("service", "Не указано")
+    master = data.get("master", "Любой мастер")
+    preferred_time = data.get("preferred_time", "Не указано")
     comment = data.get("comment", "Без комментария")
 
     client_message = (
         "✅ Заявка получена\n\n"
         f"Имя: {name}\n"
+        f"Телефон: {phone}\n"
         f"Услуга: {service}\n"
+        f"Мастер: {master}\n"
+        f"Желаемое время: {preferred_time}\n"
         f"Комментарий: {comment}\n\n"
         "Администратор получил информацию и сможет связаться с вами."
     )
@@ -160,7 +166,10 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     admin_message = (
         "📩 Новая заявка из Mini App\n\n"
         f"Имя клиента: {name}\n"
+        f"Телефон: {phone}\n"
         f"Услуга: {service}\n"
+        f"Мастер: {master}\n"
+        f"Желаемое время: {preferred_time}\n"
         f"Комментарий: {comment}\n\n"
         "Источник: Beauty Mini App Demo"
     )

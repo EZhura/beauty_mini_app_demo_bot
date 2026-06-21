@@ -173,3 +173,37 @@ textarea:focus {
 .close-button:active {
     transform: scale(0.98);
 }
+
+.cabinet-preview {
+    background: linear-gradient(135deg, #ffffff, #f6efff);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 0 10px 24px rgba(92, 63, 155, 0.12);
+}
+
+.cabinet-preview h3 {
+    margin: 0 0 8px;
+    color: #5d3fc3;
+    font-size: 18px;
+}
+
+.cabinet-preview p {
+    margin: 0 0 14px;
+    color: #5f5870;
+    line-height: 1.45;
+}
+
+.cabinet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cabinet-list span {
+    background: #ffffff;
+    color: #6c4bd8;
+    border-radius: 999px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-weight: 600;
+}

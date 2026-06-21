@@ -20,6 +20,7 @@
                 ✕ Закрыть
             </button>
         </div>
+
         <header class="hero">
             <p class="tag">Beauty Studio Demo</p>
             <h1>Мини-приложение салона внутри Telegram</h1>
@@ -73,6 +74,11 @@
                 </label>
 
                 <label>
+                    Телефон
+                    <input type="tel" id="clientPhone" placeholder="+7 900 000-00-00" />
+                </label>
+
+                <label>
                     Какая услуга интересует?
                     <select id="service">
                         <option value="Маникюр">Маникюр</option>
@@ -82,14 +88,47 @@
                 </label>
 
                 <label>
+                    Мастер
+                    <select id="master">
+                        <option value="Любой мастер">Любой мастер</option>
+                        <option value="Анна">Анна</option>
+                        <option value="Мария">Мария</option>
+                        <option value="Екатерина">Екатерина</option>
+                    </select>
+                </label>
+
+                <label>
+                    Желаемое время
+                    <input type="text" id="preferredTime" placeholder="Например, завтра после 15:00" />
+                </label>
+
+                <label>
                     Комментарий
-                    <textarea id="comment" placeholder="Например, хочу записаться на выходные"></textarea>
+                    <textarea id="comment" placeholder="Например, хочу нюдовый оттенок"></textarea>
                 </label>
 
                 <button type="submit" class="main-button">
                     Отправить заявку
                 </button>
             </form>
+        </section>
+
+        <section class="section">
+            <h2>Личный кабинет</h2>
+
+            <div class="cabinet-preview">
+                <h3>Можно подключить на следующем этапе</h3>
+                <p>
+                    В расширенной версии клиент сможет видеть свои записи, бонусы,
+                    историю посещений и быстро записываться повторно.
+                </p>
+
+                <div class="cabinet-list">
+                    <span>История записей</span>
+                    <span>Бонусы и скидки</span>
+                    <span>Повторная запись</span>
+                </div>
+            </div>
         </section>
     </div>
 
