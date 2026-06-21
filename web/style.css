@@ -254,3 +254,47 @@ body {
     font-size: 14px;
     font-weight: 600;
 }
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.step-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 18px;
+    box-shadow: 0 10px 24px rgba(92, 63, 155, 0.12);
+}
+
+.step-number {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b6ff6, #d96fd4);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    box-shadow: 0 8px 16px rgba(108, 75, 216, 0.22);
+}
+
+.step-card h3 {
+    margin: 0 0 6px;
+    color: #5d3fc3;
+    font-size: 16px;
+}
+
+.step-card p {
+    margin: 0;
+    color: #5f5870;
+    line-height: 1.45;
+    font-size: 14px;
+}
