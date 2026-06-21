@@ -18,6 +18,31 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const serviceButtons = document.querySelectorAll(".service-select-button");
+    const serviceInput = document.getElementById("service");
+    const requestSection = document.getElementById("requestSection");
+
+    serviceButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const selectedService = button.dataset.service;
+
+            if (serviceInput && selectedService) {
+                serviceInput.value = selectedService;
+            }
+
+            if (requestSection) {
+                requestSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+
+            if (tg) {
+                tg.HapticFeedback.impactOccurred("light");
+            }
+        });
+    });
+
     const form = document.getElementById("requestForm");
 
     if (!form) {
@@ -34,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const masterInput = document.getElementById("master");
         const preferredTimeInput = document.getElementById("preferredTime");
         const commentInput = document.getElementById("comment");
+        const submitButton = form.querySelector(".main-button");
 
         if (
             !clientNameInput ||
@@ -99,6 +125,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Заявка отправляется...";
+        }
+
+        tg.HapticFeedback.notificationOccurred("success");
         tg.showAlert("Заявка отправляется...");
 
         setTimeout(function () {

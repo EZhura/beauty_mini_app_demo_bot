@@ -207,3 +207,26 @@ textarea:focus {
     font-size: 14px;
     font-weight: 600;
 }
+
+.service-select-button {
+    margin-top: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #8b6ff6, #d96fd4);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(108, 75, 216, 0.22);
+}
+
+.service-select-button:active {
+    transform: scale(0.98);
+}
+
+.main-button:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
