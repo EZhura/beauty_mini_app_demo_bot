@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 PUBLIC_URL = os.getenv("PUBLIC_URL", "").rstrip("/")
 MINI_APP_URL = os.getenv("MINI_APP_URL", "").rstrip("/")
+ADMIN_CHAT_ID = os.getenv("ADMIN_CHAT_ID")
 PORT = int(os.getenv("PORT", "10000"))
 
 if not TELEGRAM_BOT_TOKEN:
@@ -97,7 +98,20 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         return
 
     await update.message.reply_text(
-        "Нажмите /start, чтобы открыть Mini App."
+        "Нажмите /start, чтобы открыть Mini App.\n\n"
+        "Если нужно узнать chat_id администратора, отправьте команду /myid."
+    )
+
+
+async def myid_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if not update.message or not update.effective_chat:
+        return
+
+    chat_id = update.effective_chat.id
+
+    await update.message.reply_text(
+        f"Ваш chat_id:\n\n{chat_id}\n\n"
+        "Скопируйте это число и добавьте его в Render в переменную ADMIN_CHAT_ID."
     )
 
 
@@ -123,15 +137,34 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     service = data.get("service", "Не указано")
     comment = data.get("comment", "Без комментария")
 
-    message = (
-        "✅ Заявка получена из Mini App\n\n"
+    client_message = (
+        "✅ Заявка получена\n\n"
         f"Имя: {name}\n"
         f"Услуга: {service}\n"
         f"Комментарий: {comment}\n\n"
-        "Это учебный демо-режим. Позже можно отправлять такие заявки администратору."
+        "Администратор получил информацию и сможет связаться с вами."
     )
 
-    await update.message.reply_text(message)
+    await update.message.reply_text(client_message)
+
+    admin_message = (
+        "📩 Новая заявка из Mini App\n\n"
+        f"Имя клиента: {name}\n"
+        f"Услуга: {service}\n"
+        f"Комментарий: {comment}\n\n"
+        "Источник: Beauty Mini App Demo"
+    )
+
+    if ADMIN_CHAT_ID:
+        try:
+            await context.bot.send_message(
+                chat_id=int(ADMIN_CHAT_ID),
+                text=admin_message,
+            )
+        except Exception:
+            logger.exception("Не удалось отправить заявку администратору")
+    else:
+        logger.warning("ADMIN_CHAT_ID не задан. Заявка администратору не отправлена.")
 
 
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -174,7 +207,12 @@ async def telegram_webhook_handler(request: web.Request) -> web.Response:
     """
     application: Application = request.app["telegram_application"]
 
-    data = await request.json()
+    try:
+        data = await request.json()
+    except Exception:
+        logger.exception("Не удалось прочитать JSON от Telegram")
+        return web.Response(text="Bad Request", status=400)
+
     update = Update.de_json(data, application.bot)
 
     await application.process_update(update)
@@ -211,6 +249,7 @@ async def main() -> None:
 
     telegram_application.add_handler(CommandHandler("start", start))
     telegram_application.add_handler(CommandHandler("help", help_command))
+    telegram_application.add_handler(CommandHandler("myid", myid_command))
 
     telegram_application.add_handler(
         MessageHandler(filters.StatusUpdate.WEB_APP_DATA, web_app_data_handler)
@@ -235,6 +274,11 @@ async def main() -> None:
 
     logger.info("Telegram webhook установлен: %s", webhook_url)
     logger.info("Mini App URL: %s", MINI_APP_URL)
+
+    if ADMIN_CHAT_ID:
+        logger.info("ADMIN_CHAT_ID задан: %s", ADMIN_CHAT_ID)
+    else:
+        logger.warning("ADMIN_CHAT_ID не задан")
 
     aiohttp_app = create_web_app(telegram_application)
 
