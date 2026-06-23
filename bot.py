@@ -58,9 +58,9 @@ WEB_DIR = BASE_DIR / "web"
 # =========================
 # ДЕМО-ХРАНИЛИЩЕ ЗАЯВОК
 # =========================
-# Важно: это временное хранилище в памяти.
-# Оно работает, пока Render-сервис не перезапущен.
-# Позже можно заменить на базу данных или Google Sheets.
+# Это временное хранилище в памяти.
+# После перезапуска Render заявки в памяти очищаются.
+# Для рабочей версии можно подключить Google Sheets / базу / CRM.
 
 REQUESTS = {}
 REQUEST_COUNTER = 0
@@ -123,7 +123,8 @@ def start_text() -> str:
     return (
         "Здравствуйте!\n\n"
         "Это демо Telegram Mini App для салона красоты.\n\n"
-        "Внутри можно посмотреть услуги, цены, акцию и отправить заявку.\n\n"
+        "Внутри можно посмотреть услуги, цены, акции, мастеров, FAQ "
+        "и отправить заявку на запись.\n\n"
         "Нажмите кнопку «Открыть Mini App» внизу чата."
     )
 
@@ -262,7 +263,7 @@ async def web_app_data_handler(update: Update, context: ContextTypes.DEFAULT_TYP
         f"Username: {telegram_username}\n"
         f"Telegram ID: {telegram_id}\n\n"
         "Статус: требуется подтверждение администратором\n"
-        "Источник: Beauty Mini App Demo"
+        "Источник: LAVANDA Beauty Studio Demo"
     )
 
     if ADMIN_CHAT_ID:
@@ -287,14 +288,14 @@ async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_T
     if not query:
         return
 
-    await query.answer()
-
     if ADMIN_CHAT_ID and str(query.from_user.id) != str(ADMIN_CHAT_ID):
         await query.answer(
             "Эта кнопка доступна только администратору.",
             show_alert=True,
         )
         return
+
+    await query.answer()
 
     data = query.data or ""
 
@@ -330,11 +331,12 @@ async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_T
         )
         return
 
-    name = request_data.get("name", "Не указано")
     service = request_data.get("service", "Не указано")
     master = request_data.get("master", "Любой мастер")
     visit_date = request_data.get("visit_date", "Не указано")
     preferred_time = request_data.get("preferred_time", "Не указано")
+
+    current_text = query.message.text if query.message else ""
 
     if action == "confirm_request":
         try:
@@ -353,8 +355,6 @@ async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_T
                     "Если потребуется уточнение, администратор свяжется с вами."
                 ),
             )
-
-            current_text = query.message.text if query.message else ""
 
             await query.edit_message_text(
                 text=(
@@ -385,8 +385,6 @@ async def admin_callback_handler(update: Update, context: ContextTypes.DEFAULT_T
                     "Пожалуйста, ожидайте сообщение или звонок."
                 ),
             )
-
-            current_text = query.message.text if query.message else ""
 
             await query.edit_message_text(
                 text=(

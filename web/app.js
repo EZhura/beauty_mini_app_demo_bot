@@ -220,17 +220,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (submitButton) {
             submitButton.disabled = true;
-            submitButton.textContent = "Заявка отправляется...";
+            submitButton.textContent = "Заявка отправлена ✓";
         }
 
         if (tg.HapticFeedback) {
             tg.HapticFeedback.notificationOccurred("success");
         }
 
-        tg.showAlert("Заявка отправляется...");
+        tg.sendData(jsonData);
 
         setTimeout(function () {
-            tg.sendData(jsonData);
-        }, 500);
+            tg.close();
+        }, 700);
     });
 });
