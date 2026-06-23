@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Beauty Studio Mini App</title>
+    <title>LAVANDA Beauty Studio</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -22,15 +22,19 @@
         </div>
 
         <header class="hero">
-            <p class="tag">Beauty Studio Demo</p>
-            <h1>Мини-приложение салона внутри Telegram</h1>
+            <p class="tag">Telegram Mini App Demo</p>
+            <h1>LAVANDA Beauty Studio</h1>
             <p class="subtitle">
-                Услуги, цены, акции, подготовка к процедурам и заявка на запись в одном удобном интерфейсе.
+                Мини-приложение для салона красоты внутри Telegram:
+                услуги, мастера, акции, подготовка, FAQ и заявка на запись.
             </p>
 
             <div class="hero-actions">
                 <button type="button" class="quick-button" data-scroll-target="servicesSection">
                     Услуги
+                </button>
+                <button type="button" class="quick-button" data-scroll-target="mastersSection">
+                    Мастера
                 </button>
                 <button type="button" class="quick-button" data-scroll-target="requestSection">
                     Записаться
@@ -41,26 +45,35 @@
             </div>
         </header>
 
-        <section class="section benefit-section">
-            <h2>Что получает салон</h2>
+        <section class="section">
+            <h2>Что можно сделать в Mini App</h2>
 
             <div class="benefit-grid">
                 <div class="benefit-card">
                     <span>01</span>
-                    <h3>Всё в одном месте</h3>
-                    <p>Услуги, цены, акции, FAQ и запись собраны внутри Telegram.</p>
+                    <h3>Собрать информацию в одном месте</h3>
+                    <p>
+                        Услуги, цены, акции, мастера, подготовка к процедурам и частые вопросы
+                        доступны клиенту прямо внутри Telegram.
+                    </p>
                 </div>
 
                 <div class="benefit-card">
                     <span>02</span>
-                    <h3>Меньше повторных вопросов</h3>
-                    <p>Клиент сам видит основную информацию до обращения к администратору.</p>
+                    <h3>Разгрузить администратора</h3>
+                    <p>
+                        Клиент сам видит основную информацию, а администратор меньше отвечает
+                        на однотипные вопросы в переписке.
+                    </p>
                 </div>
 
                 <div class="benefit-card">
                     <span>03</span>
-                    <h3>Быстрее путь к записи</h3>
-                    <p>Клиент выбирает услугу, мастера, дату и отправляет заявку.</p>
+                    <h3>Направить клиента к записи</h3>
+                    <p>
+                        Клиент выбирает услугу, мастера, дату и время, после чего заявка приходит
+                        администратору в готовом виде.
+                    </p>
                 </div>
             </div>
         </section>
@@ -71,17 +84,20 @@
             <div class="category-tabs">
                 <button type="button" class="category-tab active" data-category="all">Все</button>
                 <button type="button" class="category-tab" data-category="nails">Ногти</button>
-                <button type="button" class="category-tab" data-category="brows">Брови</button>
+                <button type="button" class="category-tab" data-category="brows">Брови / ресницы</button>
                 <button type="button" class="category-tab" data-category="hair">Волосы</button>
+                <button type="button" class="category-tab" data-category="face">Уход за лицом</button>
             </div>
 
             <div class="cards">
                 <div class="card service-card" data-category="nails">
                     <div class="service-top">
                         <h3>Маникюр с покрытием</h3>
-                        <span>от 1 800 ₽</span>
+                        <span>от 2 100 ₽</span>
                     </div>
-                    <p>Комбинированный маникюр, выравнивание и покрытие гель-лаком.</p>
+                    <p>
+                        Комбинированный маникюр, выравнивание ногтевой пластины и покрытие гель-лаком.
+                    </p>
                     <div class="service-meta">
                         <span>1,5–2 часа</span>
                         <span>Популярная услуга</span>
@@ -94,9 +110,11 @@
                 <div class="card service-card" data-category="nails">
                     <div class="service-top">
                         <h3>Педикюр</h3>
-                        <span>от 2 200 ₽</span>
+                        <span>от 2 500 ₽</span>
                     </div>
-                    <p>Обработка стопы, пальчиков и покрытие по желанию клиента.</p>
+                    <p>
+                        Обработка стопы и пальчиков, покрытие по желанию клиента.
+                    </p>
                     <div class="service-meta">
                         <span>1,5–2 часа</span>
                         <span>Уход</span>
@@ -108,30 +126,34 @@
 
                 <div class="card service-card" data-category="brows">
                     <div class="service-top">
-                        <h3>Брови</h3>
-                        <span>от 1 200 ₽</span>
+                        <h3>Коррекция и окрашивание бровей</h3>
+                        <span>от 1 400 ₽</span>
                     </div>
-                    <p>Коррекция, окрашивание и подбор формы под черты лица.</p>
+                    <p>
+                        Подбор формы, коррекция, окрашивание и рекомендации по домашнему уходу.
+                    </p>
                     <div class="service-meta">
                         <span>40–60 минут</span>
                         <span>Быстрая запись</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Брови">
+                    <button type="button" class="service-select-button" data-service="Коррекция и окрашивание бровей">
                         Записаться
                     </button>
                 </div>
 
-                <div class="card service-card" data-category="hair">
+                <div class="card service-card" data-category="brows">
                     <div class="service-top">
-                        <h3>Окрашивание</h3>
-                        <span>от 4 500 ₽</span>
+                        <h3>Ламинирование ресниц</h3>
+                        <span>от 2 200 ₽</span>
                     </div>
-                    <p>Консультация, подбор оттенка и окрашивание с учётом состояния волос.</p>
+                    <p>
+                        Эффект выразительного взгляда без ежедневной укладки и туши.
+                    </p>
                     <div class="service-meta">
-                        <span>2–4 часа</span>
-                        <span>Нужна консультация</span>
+                        <span>1–1,5 часа</span>
+                        <span>Перед отпуском</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Окрашивание">
+                    <button type="button" class="service-select-button" data-service="Ламинирование ресниц">
                         Записаться
                     </button>
                 </div>
@@ -139,14 +161,50 @@
                 <div class="card service-card" data-category="hair">
                     <div class="service-top">
                         <h3>Стрижка и укладка</h3>
-                        <span>от 2 000 ₽</span>
+                        <span>от 2 300 ₽</span>
                     </div>
-                    <p>Подбор формы, стрижка и лёгкая укладка после процедуры.</p>
+                    <p>
+                        Подбор формы, стрижка и лёгкая укладка с рекомендациями по уходу.
+                    </p>
                     <div class="service-meta">
                         <span>1–1,5 часа</span>
                         <span>Консультация</span>
                     </div>
                     <button type="button" class="service-select-button" data-service="Стрижка и укладка">
+                        Записаться
+                    </button>
+                </div>
+
+                <div class="card service-card" data-category="hair">
+                    <div class="service-top">
+                        <h3>Окрашивание волос</h3>
+                        <span>от 5 500 ₽</span>
+                    </div>
+                    <p>
+                        Консультация, подбор оттенка и окрашивание с учётом состояния волос.
+                    </p>
+                    <div class="service-meta">
+                        <span>2–4 часа</span>
+                        <span>Нужна консультация</span>
+                    </div>
+                    <button type="button" class="service-select-button" data-service="Окрашивание волос">
+                        Записаться
+                    </button>
+                </div>
+
+                <div class="card service-card" data-category="face">
+                    <div class="service-top">
+                        <h3>Уход за лицом</h3>
+                        <span>от 3 000 ₽</span>
+                    </div>
+                    <p>
+                        Очищение, увлажнение и уходовая процедура под состояние кожи клиента.
+                    </p>
+                    <div class="service-meta">
+                        <span>1 час</span>
+                        <span>Индивидуальный уход</span>
+                    </div>
+                    <button type="button" class="service-select-button" data-service="Уход за лицом">
                         Записаться
                     </button>
                 </div>
@@ -159,30 +217,37 @@
             <div class="promo-list">
                 <div class="promo">
                     <h3>Скидка 10% на первое посещение</h3>
-                    <p>Для новых клиентов при записи через Mini App.</p>
+                    <p>
+                        Для новых клиентов при записи через Telegram Mini App.
+                    </p>
                 </div>
 
                 <div class="promo">
-                    <h3>Комплекс “Брови + уход”</h3>
-                    <p>Удобный формат для клиента, который хочет записаться сразу на несколько услуг.</p>
+                    <h3>Комплекс “Брови + ресницы”</h3>
+                    <p>
+                        Удобный вариант для клиента, который хочет записаться сразу на две услуги.
+                    </p>
                 </div>
 
                 <div class="promo">
                     <h3>Подарочный сертификат</h3>
-                    <p>Можно добавить отдельный раздел для сертификатов и подарочных услуг.</p>
+                    <p>
+                        В рабочей версии можно добавить отдельный раздел для сертификатов и подарочных услуг.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Мастера</h2>
+        <section class="section" id="mastersSection">
+            <h2>Мастера LAVANDA</h2>
 
             <div class="masters">
                 <div class="master-card">
                     <div class="master-avatar">А</div>
                     <div>
                         <h3>Анна</h3>
-                        <p>Маникюр, педикюр · опыт 5 лет</p>
+                        <p>Ногтевой сервис · опыт 5 лет</p>
+                        <span>Маникюр, педикюр, укрепление</span>
                     </div>
                 </div>
 
@@ -190,7 +255,8 @@
                     <div class="master-avatar">М</div>
                     <div>
                         <h3>Мария</h3>
-                        <p>Брови, окрашивание · опыт 4 года</p>
+                        <p>Брови и ресницы · опыт 4 года</p>
+                        <span>Брови, ламинирование, окрашивание</span>
                     </div>
                 </div>
 
@@ -198,29 +264,18 @@
                     <div class="master-avatar">Е</div>
                     <div>
                         <h3>Екатерина</h3>
-                        <p>Волосы, уход, укладки · опыт 7 лет</p>
+                        <p>Волосы и уход · опыт 7 лет</p>
+                        <span>Стрижки, окрашивание, уходовые процедуры</span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section">
-            <h2>Подготовка к процедурам</h2>
-
-            <div class="prep-list">
-                <div class="prep-card">
-                    <h3>Перед маникюром</h3>
-                    <p>Не наносите плотные масла за несколько часов до процедуры, если планируется покрытие.</p>
-                </div>
-
-                <div class="prep-card">
-                    <h3>Перед окрашиванием</h3>
-                    <p>Предупредите мастера об аллергиях, предыдущих окрашиваниях и состоянии волос.</p>
-                </div>
-
-                <div class="prep-card">
-                    <h3>Перед бровями</h3>
-                    <p>Не используйте активные пилинги и кислоты в зоне бровей за 24 часа до процедуры.</p>
+                <div class="master-card">
+                    <div class="master-avatar">С</div>
+                    <div>
+                        <h3>София</h3>
+                        <p>Косметология · опыт 6 лет</p>
+                        <span>Уход за лицом, очищение, консультации</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -231,10 +286,9 @@
             <div class="online-card">
                 <h3>Mini App можно использовать вместе с YCLIENTS или другой системой</h3>
                 <p>
-                    Mini App не обязательно заменяет вашу текущую запись. Он может быть удобной Telegram-витриной:
-                    клиент смотрит услуги, цены, акции, подготовку и частые вопросы, а затем переходит к вашей
-                    онлайн-записи
-                    или оставляет заявку администратору.
+                    Mini App не обязательно заменяет вашу текущую онлайн-запись. Он может быть удобной
+                    Telegram-витриной: клиент смотрит услуги, цены, акции, мастеров, подготовку и FAQ,
+                    а затем переходит к вашей онлайн-записи или оставляет заявку администратору.
                 </p>
 
                 <div class="online-actions">
@@ -242,9 +296,13 @@
                         Пример кнопки онлайн-записи
                     </button>
                     <button type="button" class="secondary-button" data-scroll-target="requestSection">
-                        Оставить заявку
+                        Оставить заявку администратору
                     </button>
                 </div>
+
+                <p class="small-note">
+                    В рабочей версии эту кнопку можно связать с YCLIENTS, CRM, сайтом или другой системой записи.
+                </p>
             </div>
         </section>
 
@@ -267,9 +325,11 @@
                     <select id="service">
                         <option value="Маникюр с покрытием">Маникюр с покрытием</option>
                         <option value="Педикюр">Педикюр</option>
-                        <option value="Брови">Брови</option>
-                        <option value="Окрашивание">Окрашивание</option>
+                        <option value="Коррекция и окрашивание бровей">Коррекция и окрашивание бровей</option>
+                        <option value="Ламинирование ресниц">Ламинирование ресниц</option>
                         <option value="Стрижка и укладка">Стрижка и укладка</option>
+                        <option value="Окрашивание волос">Окрашивание волос</option>
+                        <option value="Уход за лицом">Уход за лицом</option>
                     </select>
                 </label>
 
@@ -280,6 +340,7 @@
                         <option value="Анна">Анна</option>
                         <option value="Мария">Мария</option>
                         <option value="Екатерина">Екатерина</option>
+                        <option value="София">София</option>
                     </select>
                 </label>
 
@@ -302,19 +363,54 @@
 
                 <p class="demo-note">
                     В демо-версии дата и время отправляются администратору для подтверждения.
-                    В рабочей версии можно подключить автоматическую проверку свободных слотов или переход к вашей
-                    онлайн-записи.
+                    В рабочей версии можно подключить автоматическую проверку свободных слотов
+                    или переход к вашей онлайн-записи.
                 </p>
 
                 <label>
                     Комментарий
-                    <textarea id="comment" placeholder="Например, хочу нюдовый оттенок"></textarea>
+                    <textarea id="comment"
+                        placeholder="Например, хочу нюдовый оттенок или нужна консультация"></textarea>
                 </label>
 
                 <button type="submit" class="main-button">
                     Отправить заявку
                 </button>
             </form>
+        </section>
+
+        <section class="section">
+            <h2>Подготовка к процедурам</h2>
+
+            <div class="prep-list">
+                <div class="prep-card">
+                    <h3>Перед маникюром</h3>
+                    <p>
+                        Не наносите плотные масла за несколько часов до процедуры, если планируется покрытие.
+                    </p>
+                </div>
+
+                <div class="prep-card">
+                    <h3>Перед окрашиванием</h3>
+                    <p>
+                        Предупредите мастера об аллергиях, предыдущих окрашиваниях и состоянии волос.
+                    </p>
+                </div>
+
+                <div class="prep-card">
+                    <h3>Перед бровями</h3>
+                    <p>
+                        Не используйте активные пилинги и кислоты в зоне бровей за 24 часа до процедуры.
+                    </p>
+                </div>
+
+                <div class="prep-card">
+                    <h3>Перед уходом за лицом</h3>
+                    <p>
+                        Расскажите специалисту о чувствительности кожи, аллергиях и активном домашнем уходе.
+                    </p>
+                </div>
+            </div>
         </section>
 
         <section class="section" id="faqSection">
@@ -331,12 +427,28 @@
                 </div>
 
                 <button type="button" class="faq-item">
+                    <span>Нужна ли предоплата?</span>
+                    <strong>+</strong>
+                </button>
+                <div class="faq-answer">
+                    Это зависит от правил салона. В Mini App можно добавить отдельный блок с условиями записи и отмены.
+                </div>
+
+                <button type="button" class="faq-item">
                     <span>Можно ли подключить онлайн-запись?</span>
                     <strong>+</strong>
                 </button>
                 <div class="faq-answer">
                     Да. Mini App можно связать ссылкой на YCLIENTS или другую систему. Полная автоматическая интеграция
                     делается отдельным этапом.
+                </div>
+
+                <button type="button" class="faq-item">
+                    <span>Что делать, если нет подходящего времени?</span>
+                    <strong>+</strong>
+                </button>
+                <div class="faq-answer">
+                    Клиент может выбрать вариант “Хочу подобрать другое время”, и администратор свяжется для уточнения.
                 </div>
 
                 <button type="button" class="faq-item">
@@ -358,7 +470,9 @@
                     <div class="step-number">1</div>
                     <div>
                         <h3>Клиент выбирает услугу</h3>
-                        <p>В Mini App клиент смотрит услуги, цены, мастеров, выбирает дату и удобное время.</p>
+                        <p>
+                            В Mini App клиент смотрит услуги, цены, мастеров, акции и подготовку к процедурам.
+                        </p>
                     </div>
                 </div>
 
@@ -366,7 +480,9 @@
                     <div class="step-number">2</div>
                     <div>
                         <h3>Заявка приходит администратору</h3>
-                        <p>Администратор получает имя, телефон, услугу, дату, время и Telegram-данные клиента.</p>
+                        <p>
+                            Администратор получает имя, телефон, услугу, дату, время и Telegram-данные клиента.
+                        </p>
                     </div>
                 </div>
 
@@ -374,7 +490,9 @@
                     <div class="step-number">3</div>
                     <div>
                         <h3>Запись подтверждается одной кнопкой</h3>
-                        <p>Администратор может подтвердить заявку или отметить, что нужно связаться с клиентом.</p>
+                        <p>
+                            Администратор может подтвердить заявку или отметить, что нужно связаться с клиентом.
+                        </p>
                     </div>
                 </div>
 
@@ -382,26 +500,30 @@
                     <div class="step-number">4</div>
                     <div>
                         <h3>Клиент получает уведомление</h3>
-                        <p>После подтверждения клиент получает сообщение в Telegram со статусом своей записи.</p>
+                        <p>
+                            После подтверждения клиент получает сообщение в Telegram со статусом своей записи.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="section">
-            <h2>Личный кабинет</h2>
+            <h2>Что можно подключить дальше</h2>
 
             <div class="cabinet-preview">
-                <h3>Можно подключить на следующем этапе</h3>
+                <h3>Расширение Mini App</h3>
                 <p>
-                    В расширенной версии клиент сможет видеть свои записи, бонусы,
-                    историю посещений и быстро записываться повторно.
+                    В рабочей версии можно добавить личный кабинет, историю записей, бонусы,
+                    сохранение заявок в Google Sheets, CRM или интеграцию с онлайн-записью.
                 </p>
 
                 <div class="cabinet-list">
                     <span>История записей</span>
                     <span>Бонусы и скидки</span>
-                    <span>Повторная запись</span>
+                    <span>Google Sheets / CRM</span>
+                    <span>YCLIENTS / онлайн-запись</span>
+                    <span>AI-ответы</span>
                 </div>
             </div>
         </section>

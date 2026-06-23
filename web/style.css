@@ -43,11 +43,24 @@ body {
 }
 
 .hero {
-    background: linear-gradient(135deg, #8b6ff6, #d96fd4);
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.26), transparent 30%),
+        linear-gradient(135deg, #7d63e8, #d96fd4);
     color: #ffffff;
-    border-radius: 28px;
-    padding: 28px 22px;
+    border-radius: 30px;
+    padding: 30px 22px;
     box-shadow: 0 14px 30px rgba(108, 75, 216, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "✦";
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    font-size: 34px;
+    opacity: 0.35;
 }
 
 .tag {
@@ -62,15 +75,16 @@ body {
 
 .hero h1 {
     margin: 0;
-    font-size: 28px;
-    line-height: 1.15;
+    font-size: 30px;
+    line-height: 1.12;
+    letter-spacing: -0.5px;
 }
 
 .subtitle {
     margin: 14px 0 0;
     font-size: 15px;
     line-height: 1.45;
-    opacity: 0.95;
+    opacity: 0.96;
 }
 
 .hero-actions {
@@ -84,7 +98,7 @@ body {
     border: none;
     border-radius: 999px;
     padding: 10px 13px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.22);
     color: #ffffff;
     font-size: 14px;
     font-weight: 700;
@@ -92,7 +106,7 @@ body {
 }
 
 .section {
-    margin-top: 26px;
+    margin-top: 28px;
 }
 
 .section h2 {
@@ -225,7 +239,7 @@ body {
     width: 100%;
     border: none;
     border-radius: 999px;
-    padding: 10px 14px;
+    padding: 11px 14px;
     background: linear-gradient(135deg, #8b6ff6, #d96fd4);
     color: #ffffff;
     font-size: 14px;
@@ -269,7 +283,7 @@ body {
 
 .master-card {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 14px;
     background: #ffffff;
     border-radius: 22px;
@@ -278,9 +292,9 @@ body {
 }
 
 .master-avatar {
-    flex: 0 0 46px;
-    width: 46px;
-    height: 46px;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: linear-gradient(135deg, #8b6ff6, #d96fd4);
     color: #ffffff;
@@ -298,10 +312,17 @@ body {
 }
 
 .master-card p {
-    margin: 0;
+    margin: 0 0 6px;
     color: #5f5870;
     font-size: 14px;
     line-height: 1.4;
+}
+
+.master-card span {
+    display: inline-block;
+    color: #8a7aa4;
+    font-size: 13px;
+    line-height: 1.35;
 }
 
 .online-actions {
@@ -321,6 +342,12 @@ body {
     font-size: 14px;
     font-weight: 800;
     cursor: pointer;
+}
+
+.small-note {
+    margin: 14px 0 0 !important;
+    color: #8a7aa4 !important;
+    font-size: 13px;
 }
 
 .form {
