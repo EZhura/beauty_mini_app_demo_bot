@@ -25,37 +25,128 @@
             <p class="tag">Beauty Studio Demo</p>
             <h1>Мини-приложение салона внутри Telegram</h1>
             <p class="subtitle">
-                Услуги, цены, акции и заявка на запись в одном удобном интерфейсе.
+                Услуги, цены, акции, подготовка к процедурам и заявка на запись в одном удобном интерфейсе.
             </p>
+
+            <div class="hero-actions">
+                <button type="button" class="quick-button" data-scroll-target="servicesSection">
+                    Услуги
+                </button>
+                <button type="button" class="quick-button" data-scroll-target="requestSection">
+                    Записаться
+                </button>
+                <button type="button" class="quick-button" data-scroll-target="faqSection">
+                    FAQ
+                </button>
+            </div>
         </header>
 
-        <section class="section">
-            <h2>Популярные услуги</h2>
+        <section class="section benefit-section">
+            <h2>Что получает салон</h2>
+
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <span>01</span>
+                    <h3>Всё в одном месте</h3>
+                    <p>Услуги, цены, акции, FAQ и запись собраны внутри Telegram.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <span>02</span>
+                    <h3>Меньше повторных вопросов</h3>
+                    <p>Клиент сам видит основную информацию до обращения к администратору.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <span>03</span>
+                    <h3>Быстрее путь к записи</h3>
+                    <p>Клиент выбирает услугу, мастера, дату и отправляет заявку.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="servicesSection">
+            <h2>Услуги и цены</h2>
+
+            <div class="category-tabs">
+                <button type="button" class="category-tab active" data-category="all">Все</button>
+                <button type="button" class="category-tab" data-category="nails">Ногти</button>
+                <button type="button" class="category-tab" data-category="brows">Брови</button>
+                <button type="button" class="category-tab" data-category="hair">Волосы</button>
+            </div>
 
             <div class="cards">
-                <div class="card">
-                    <h3>Маникюр</h3>
-                    <p>Классический, комбинированный, покрытие гель-лаком.</p>
-                    <span>от 1 800 ₽</span>
-                    <button type="button" class="service-select-button" data-service="Маникюр">
+                <div class="card service-card" data-category="nails">
+                    <div class="service-top">
+                        <h3>Маникюр с покрытием</h3>
+                        <span>от 1 800 ₽</span>
+                    </div>
+                    <p>Комбинированный маникюр, выравнивание и покрытие гель-лаком.</p>
+                    <div class="service-meta">
+                        <span>1,5–2 часа</span>
+                        <span>Популярная услуга</span>
+                    </div>
+                    <button type="button" class="service-select-button" data-service="Маникюр с покрытием">
                         Записаться
                     </button>
                 </div>
 
-                <div class="card">
-                    <h3>Брови</h3>
-                    <p>Коррекция, окрашивание, долговременная укладка.</p>
-                    <span>от 1 200 ₽</span>
+                <div class="card service-card" data-category="nails">
+                    <div class="service-top">
+                        <h3>Педикюр</h3>
+                        <span>от 2 200 ₽</span>
+                    </div>
+                    <p>Обработка стопы, пальчиков и покрытие по желанию клиента.</p>
+                    <div class="service-meta">
+                        <span>1,5–2 часа</span>
+                        <span>Уход</span>
+                    </div>
+                    <button type="button" class="service-select-button" data-service="Педикюр">
+                        Записаться
+                    </button>
+                </div>
+
+                <div class="card service-card" data-category="brows">
+                    <div class="service-top">
+                        <h3>Брови</h3>
+                        <span>от 1 200 ₽</span>
+                    </div>
+                    <p>Коррекция, окрашивание и подбор формы под черты лица.</p>
+                    <div class="service-meta">
+                        <span>40–60 минут</span>
+                        <span>Быстрая запись</span>
+                    </div>
                     <button type="button" class="service-select-button" data-service="Брови">
                         Записаться
                     </button>
                 </div>
 
-                <div class="card">
-                    <h3>Окрашивание</h3>
-                    <p>Консультация, подбор оттенка, сложные техники.</p>
-                    <span>от 4 500 ₽</span>
+                <div class="card service-card" data-category="hair">
+                    <div class="service-top">
+                        <h3>Окрашивание</h3>
+                        <span>от 4 500 ₽</span>
+                    </div>
+                    <p>Консультация, подбор оттенка и окрашивание с учётом состояния волос.</p>
+                    <div class="service-meta">
+                        <span>2–4 часа</span>
+                        <span>Нужна консультация</span>
+                    </div>
                     <button type="button" class="service-select-button" data-service="Окрашивание">
+                        Записаться
+                    </button>
+                </div>
+
+                <div class="card service-card" data-category="hair">
+                    <div class="service-top">
+                        <h3>Стрижка и укладка</h3>
+                        <span>от 2 000 ₽</span>
+                    </div>
+                    <p>Подбор формы, стрижка и лёгкая укладка после процедуры.</p>
+                    <div class="service-meta">
+                        <span>1–1,5 часа</span>
+                        <span>Консультация</span>
+                    </div>
+                    <button type="button" class="service-select-button" data-service="Стрижка и укладка">
                         Записаться
                     </button>
                 </div>
@@ -63,13 +154,97 @@
         </section>
 
         <section class="section">
-            <h2>Акция</h2>
+            <h2>Акции и предложения</h2>
 
-            <div class="promo">
-                <h3>Скидка 10% на первое посещение</h3>
+            <div class="promo-list">
+                <div class="promo">
+                    <h3>Скидка 10% на первое посещение</h3>
+                    <p>Для новых клиентов при записи через Mini App.</p>
+                </div>
+
+                <div class="promo">
+                    <h3>Комплекс “Брови + уход”</h3>
+                    <p>Удобный формат для клиента, который хочет записаться сразу на несколько услуг.</p>
+                </div>
+
+                <div class="promo">
+                    <h3>Подарочный сертификат</h3>
+                    <p>Можно добавить отдельный раздел для сертификатов и подарочных услуг.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Мастера</h2>
+
+            <div class="masters">
+                <div class="master-card">
+                    <div class="master-avatar">А</div>
+                    <div>
+                        <h3>Анна</h3>
+                        <p>Маникюр, педикюр · опыт 5 лет</p>
+                    </div>
+                </div>
+
+                <div class="master-card">
+                    <div class="master-avatar">М</div>
+                    <div>
+                        <h3>Мария</h3>
+                        <p>Брови, окрашивание · опыт 4 года</p>
+                    </div>
+                </div>
+
+                <div class="master-card">
+                    <div class="master-avatar">Е</div>
+                    <div>
+                        <h3>Екатерина</h3>
+                        <p>Волосы, уход, укладки · опыт 7 лет</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Подготовка к процедурам</h2>
+
+            <div class="prep-list">
+                <div class="prep-card">
+                    <h3>Перед маникюром</h3>
+                    <p>Не наносите плотные масла за несколько часов до процедуры, если планируется покрытие.</p>
+                </div>
+
+                <div class="prep-card">
+                    <h3>Перед окрашиванием</h3>
+                    <p>Предупредите мастера об аллергиях, предыдущих окрашиваниях и состоянии волос.</p>
+                </div>
+
+                <div class="prep-card">
+                    <h3>Перед бровями</h3>
+                    <p>Не используйте активные пилинги и кислоты в зоне бровей за 24 часа до процедуры.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section online-section">
+            <h2>Если уже есть онлайн-запись</h2>
+
+            <div class="online-card">
+                <h3>Mini App можно использовать вместе с YCLIENTS или другой системой</h3>
                 <p>
-                    Для новых клиентов при записи через мини-приложение.
+                    Mini App не обязательно заменяет вашу текущую запись. Он может быть удобной Telegram-витриной:
+                    клиент смотрит услуги, цены, акции, подготовку и частые вопросы, а затем переходит к вашей
+                    онлайн-записи
+                    или оставляет заявку администратору.
                 </p>
+
+                <div class="online-actions">
+                    <button type="button" class="secondary-button" id="onlineBookingDemoButton">
+                        Пример кнопки онлайн-записи
+                    </button>
+                    <button type="button" class="secondary-button" data-scroll-target="requestSection">
+                        Оставить заявку
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -90,9 +265,11 @@
                 <label>
                     Какая услуга интересует?
                     <select id="service">
-                        <option value="Маникюр">Маникюр</option>
+                        <option value="Маникюр с покрытием">Маникюр с покрытием</option>
+                        <option value="Педикюр">Педикюр</option>
                         <option value="Брови">Брови</option>
                         <option value="Окрашивание">Окрашивание</option>
+                        <option value="Стрижка и укладка">Стрижка и укладка</option>
                     </select>
                 </label>
 
@@ -125,7 +302,8 @@
 
                 <p class="demo-note">
                     В демо-версии дата и время отправляются администратору для подтверждения.
-                    В рабочей версии можно подключить автоматическую проверку свободных слотов.
+                    В рабочей версии можно подключить автоматическую проверку свободных слотов или переход к вашей
+                    онлайн-записи.
                 </p>
 
                 <label>
@@ -139,6 +317,39 @@
             </form>
         </section>
 
+        <section class="section" id="faqSection">
+            <h2>Частые вопросы</h2>
+
+            <div class="faq-list">
+                <button type="button" class="faq-item">
+                    <span>Можно ли перенести запись?</span>
+                    <strong>+</strong>
+                </button>
+                <div class="faq-answer">
+                    Да, клиент может написать администратору. В рабочей версии можно добавить отдельный сценарий
+                    переноса записи.
+                </div>
+
+                <button type="button" class="faq-item">
+                    <span>Можно ли подключить онлайн-запись?</span>
+                    <strong>+</strong>
+                </button>
+                <div class="faq-answer">
+                    Да. Mini App можно связать ссылкой на YCLIENTS или другую систему. Полная автоматическая интеграция
+                    делается отдельным этапом.
+                </div>
+
+                <button type="button" class="faq-item">
+                    <span>Можно ли добавить личный кабинет?</span>
+                    <strong>+</strong>
+                </button>
+                <div class="faq-answer">
+                    Да, следующим этапом можно добавить историю записей, бонусы, повторную запись и персональные
+                    предложения.
+                </div>
+            </div>
+        </section>
+
         <section class="section">
             <h2>Как это работает для салона</h2>
 
@@ -147,10 +358,7 @@
                     <div class="step-number">1</div>
                     <div>
                         <h3>Клиент выбирает услугу</h3>
-                        <p>
-                            В Mini App клиент смотрит услуги, цены, мастера,
-                            выбирает дату и удобное время.
-                        </p>
+                        <p>В Mini App клиент смотрит услуги, цены, мастеров, выбирает дату и удобное время.</p>
                     </div>
                 </div>
 
@@ -158,10 +366,7 @@
                     <div class="step-number">2</div>
                     <div>
                         <h3>Заявка приходит администратору</h3>
-                        <p>
-                            Администратор получает имя, телефон, услугу,
-                            дату, время и Telegram-данные клиента.
-                        </p>
+                        <p>Администратор получает имя, телефон, услугу, дату, время и Telegram-данные клиента.</p>
                     </div>
                 </div>
 
@@ -169,10 +374,7 @@
                     <div class="step-number">3</div>
                     <div>
                         <h3>Запись подтверждается одной кнопкой</h3>
-                        <p>
-                            Администратор может подтвердить заявку или отметить,
-                            что нужно связаться с клиентом.
-                        </p>
+                        <p>Администратор может подтвердить заявку или отметить, что нужно связаться с клиентом.</p>
                     </div>
                 </div>
 
@@ -180,10 +382,7 @@
                     <div class="step-number">4</div>
                     <div>
                         <h3>Клиент получает уведомление</h3>
-                        <p>
-                            После подтверждения клиент получает сообщение в Telegram
-                            со статусом своей записи.
-                        </p>
+                        <p>После подтверждения клиент получает сообщение в Telegram со статусом своей записи.</p>
                     </div>
                 </div>
             </div>

@@ -18,6 +18,52 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const today = new Date().toISOString().split("T")[0];
+    const visitDateInput = document.getElementById("visitDate");
+
+    if (visitDateInput) {
+        visitDateInput.setAttribute("min", today);
+    }
+
+    const scrollButtons = document.querySelectorAll("[data-scroll-target]");
+
+    scrollButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const targetId = button.dataset.scrollTarget;
+            const target = document.getElementById(targetId);
+
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
+
+    const categoryTabs = document.querySelectorAll(".category-tab");
+    const serviceCards = document.querySelectorAll(".service-card");
+
+    categoryTabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+            const selectedCategory = tab.dataset.category;
+
+            categoryTabs.forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            tab.classList.add("active");
+
+            serviceCards.forEach(function (card) {
+                if (selectedCategory === "all" || card.dataset.category === selectedCategory) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+        });
+    });
+
     const serviceButtons = document.querySelectorAll(".service-select-button");
     const serviceInput = document.getElementById("service");
     const requestSection = document.getElementById("requestSection");
@@ -39,6 +85,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.impactOccurred("light");
+            }
+        });
+    });
+
+    const onlineBookingDemoButton = document.getElementById("onlineBookingDemoButton");
+
+    if (onlineBookingDemoButton) {
+        onlineBookingDemoButton.addEventListener("click", function () {
+            const text =
+                "В рабочей версии эта кнопка может вести на вашу онлайн-запись: YCLIENTS, CRM, сайт или другую систему.";
+
+            if (tg) {
+                tg.showAlert(text);
+            } else {
+                alert(text);
+            }
+        });
+    }
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+            const answer = item.nextElementSibling;
+            const icon = item.querySelector("strong");
+
+            if (!answer) {
+                return;
+            }
+
+            answer.classList.toggle("open");
+
+            if (icon) {
+                icon.textContent = answer.classList.contains("open") ? "−" : "+";
             }
         });
     });
