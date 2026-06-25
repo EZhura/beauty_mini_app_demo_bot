@@ -25,19 +25,46 @@ document.addEventListener("DOMContentLoaded", function () {
         visitDateInput.setAttribute("min", today);
     }
 
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        if (tg && tg.HapticFeedback) {
+            tg.HapticFeedback.impactOccurred("light");
+        }
+    }
+
+    function scrollToSection(targetId) {
+        const target = document.getElementById(targetId);
+
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            if (tg && tg.HapticFeedback) {
+                tg.HapticFeedback.impactOccurred("light");
+            }
+        }
+    }
+
     const scrollButtons = document.querySelectorAll("[data-scroll-target]");
 
     scrollButtons.forEach(function (button) {
         button.addEventListener("click", function () {
             const targetId = button.dataset.scrollTarget;
-            const target = document.getElementById(targetId);
+            scrollToSection(targetId);
+        });
+    });
 
-            if (target) {
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
+    const scrollTopButtons = document.querySelectorAll("[data-scroll-top]");
+
+    scrollTopButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            scrollToTop();
         });
     });
 
