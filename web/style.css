@@ -737,3 +737,43 @@ body {
         gap: 0;
     }
 }
+
+.sheets-card {
+    margin-top: 16px;
+    background: linear-gradient(135deg, #ffffff, #f7fff8);
+    border-radius: 22px;
+    padding: 18px;
+    box-shadow: 0 10px 24px rgba(92, 63, 155, 0.10);
+}
+
+.sheets-card h3 {
+    margin: 0 0 8px;
+    color: #5d3fc3;
+    font-size: 17px;
+}
+
+.sheets-card p {
+    margin: 0;
+    color: #5f5870;
+    line-height: 1.45;
+}
+
+.sheets-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 14px;
+    overflow-x: auto;
+}
+
+.sheets-preview span {
+    min-width: 68px;
+    background: #ffffff;
+    border: 1px solid rgba(108, 75, 216, 0.12);
+    color: #6c4bd8;
+    border-radius: 12px;
+    padding: 8px 6px;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+}
