@@ -7,7 +7,7 @@
 
     <title>LAVANDA Beauty Studio</title>
 
-    <link rel="stylesheet" href="style.css?v=2" />
+    <link rel="stylesheet" href="style.css?v=5" />
 
     <!-- Официальный скрипт Telegram Mini Apps -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -16,195 +16,342 @@
 <body>
     <div class="app">
         <div class="top-actions">
-            <button type="button" id="closeAppButton" class="close-button">
+            <div class="language-switch">
+                <button type="button" class="lang-button active" data-lang="ru">RU</button>
+                <button type="button" class="lang-button" data-lang="en">EN</button>
+            </div>
+
+            <button type="button" id="closeAppButton" class="close-button" data-ru="✕ Закрыть" data-en="✕ Close">
                 ✕ Закрыть
             </button>
         </div>
 
         <header class="hero">
-            <p class="tag">Telegram Mini App Demo</p>
-            <h1>LAVANDA Beauty Studio</h1>
-            <p class="subtitle">
-                Мини-приложение для салона красоты внутри Telegram:
-                услуги, мастера, акции, подготовка, FAQ и заявка на запись.
+            <p class="tag" data-ru="Telegram Mini App Demo" data-en="Telegram Mini App Demo">
+                Telegram Mini App Demo
+            </p>
+
+            <h1 data-ru="LAVANDA Beauty Studio" data-en="LAVANDA Beauty Studio">
+                LAVANDA Beauty Studio
+            </h1>
+
+            <p class="subtitle"
+                data-ru="Универсальное демо Mini App для салона красоты: услуги, цены, языки общения, адрес, FAQ и заявка на запись внутри Telegram."
+                data-en="A universal Mini App demo for a beauty studio: services, prices, languages, address, FAQ and appointment request inside Telegram.">
+                Универсальное демо Mini App для салона красоты: услуги, цены, языки общения, адрес, FAQ и заявка на
+                запись внутри Telegram.
             </p>
 
             <div class="hero-actions">
-                <button type="button" class="quick-button" data-scroll-target="servicesSection">
+                <button type="button" class="quick-button" data-scroll-target="servicesSection" data-ru="Услуги"
+                    data-en="Services">
                     Услуги
                 </button>
-                <button type="button" class="quick-button" data-scroll-target="mastersSection">
+
+                <button type="button" class="quick-button" data-scroll-target="mastersSection" data-ru="Мастера"
+                    data-en="Specialists">
                     Мастера
                 </button>
-                <button type="button" class="quick-button" data-scroll-target="requestSection">
+
+                <button type="button" class="quick-button" data-scroll-target="requestSection" data-ru="Записаться"
+                    data-en="Book">
                     Записаться
                 </button>
-                <button type="button" class="quick-button" data-scroll-target="faqSection">
+
+                <button type="button" class="quick-button" data-scroll-target="faqSection" data-ru="FAQ" data-en="FAQ">
                     FAQ
                 </button>
             </div>
         </header>
 
+        <section class="section relocation-section">
+            <h2 data-ru="Единая точка входа для клиентов" data-en="A single entry point for clients">
+                Единая точка входа для клиентов
+            </h2>
+
+            <div class="relocation-card">
+                <h3 data-ru="Клиент быстро понимает, что выбрать и как записаться"
+                    data-en="Clients quickly understand what to choose and how to book">
+                    Клиент быстро понимает, что выбрать и как записаться
+                </h3>
+
+                <p data-ru="Клиент может прийти из Telegram, Instagram, Google Maps, сайта или рекомендации. В Mini App он быстро видит услуги, цены, языки общения, адрес и способ записи — без долгого поиска и переписки."
+                    data-en="A client may come from Telegram, Instagram, Google Maps, a website or a recommendation. In Mini App, they can quickly see services, prices, languages, address and booking options — without long searching or messaging.">
+                    Клиент может прийти из Telegram, Instagram, Google Maps, сайта или рекомендации. В Mini App он
+                    быстро видит услуги, цены, языки общения, адрес и способ записи — без долгого поиска и переписки.
+                </p>
+
+                <div class="relocation-points">
+                    <span data-ru="Услуги и цены" data-en="Services and prices">Услуги и цены</span>
+                    <span data-ru="Языки общения" data-en="Languages">Языки общения</span>
+                    <span data-ru="Адрес на карте" data-en="Map location">Адрес на карте</span>
+                    <span data-ru="Заявка в Telegram" data-en="Telegram request">Заявка в Telegram</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="languagesSection">
+            <h2 data-ru="Языки общения" data-en="Languages">
+                Языки общения
+            </h2>
+
+            <div class="language-card">
+                <h3 data-ru="Можно добавить нужные языки под ваш бизнес"
+                    data-en="The needed languages can be added for your business">
+                    Можно добавить нужные языки под ваш бизнес
+                </h3>
+
+                <p data-ru="В рабочей версии можно указать реальные языки общения: русский, английский, местный язык или любые другие языки, которые нужны вашему салону, студии или клинике."
+                    data-en="In a real version, you can show the actual languages of your business: Russian, English, local language or any other languages your salon, studio or clinic needs.">
+                    В рабочей версии можно указать реальные языки общения: русский, английский, местный язык или любые
+                    другие языки, которые нужны вашему салону, студии или клинике.
+                </p>
+
+                <div class="language-list">
+                    <span>🇷🇺 Русский</span>
+                    <span>🇬🇧 English</span>
+                    <span data-ru="🌍 Любой другой язык" data-en="🌍 Any other language">🌍 Любой другой язык</span>
+                </div>
+
+                <p class="small-note"
+                    data-ru="В демо показан пример RU / EN. Для реального проекта можно оставить один язык или сделать многоязычную версию."
+                    data-en="This demo shows RU / EN as an example. A real project can be one-language or multilingual.">
+                    В демо показан пример RU / EN. Для реального проекта можно оставить один язык или сделать
+                    многоязычную версию.
+                </p>
+            </div>
+        </section>
+
+        <section class="section address-section">
+            <h2 data-ru="Адрес и как добраться" data-en="Address and directions">
+                Адрес и как добраться
+            </h2>
+
+            <div class="address-card">
+                <h3 data-ru="Google Maps для любой точки мира" data-en="Google Maps for any location">
+                    Google Maps для любой точки мира
+                </h3>
+
+                <p data-ru="В рабочей версии здесь будет реальный адрес вашего салона, студии или клиники. Кнопка может открывать точку в Google Maps в любой стране."
+                    data-en="In a real version, the actual address of your salon, studio or clinic will be shown here. The button can open a Google Maps location in any country.">
+                    В рабочей версии здесь будет реальный адрес вашего салона, студии или клиники. Кнопка может
+                    открывать точку в Google Maps в любой стране.
+                </p>
+
+                <button type="button" class="secondary-button" id="googleMapsButton"
+                    data-ru="Открыть пример в Google Maps" data-en="Open Google Maps example">
+                    Открыть пример в Google Maps
+                </button>
+            </div>
+        </section>
+
         <section class="section">
-            <h2>Что можно сделать в Mini App</h2>
+            <h2 data-ru="Что можно сделать в Mini App" data-en="What Mini App can do">
+                Что можно сделать в Mini App
+            </h2>
 
             <div class="benefit-grid">
                 <div class="benefit-card">
                     <span>01</span>
-                    <h3>Собрать информацию в одном месте</h3>
-                    <p>
-                        Услуги, цены, акции, мастера, подготовка к процедурам и частые вопросы
-                        доступны клиенту прямо внутри Telegram.
+                    <h3 data-ru="Собрать информацию в одном месте" data-en="Keep everything in one place">
+                        Собрать информацию в одном месте
+                    </h3>
+                    <p data-ru="Услуги, цены, акции, мастера, языки общения, адрес и частые вопросы доступны клиенту прямо внутри Telegram."
+                        data-en="Services, prices, offers, specialists, languages, address and FAQ are available to the client inside Telegram.">
+                        Услуги, цены, акции, мастера, языки общения, адрес и частые вопросы доступны клиенту прямо
+                        внутри Telegram.
                     </p>
                 </div>
 
                 <div class="benefit-card">
                     <span>02</span>
-                    <h3>Разгрузить администратора</h3>
-                    <p>
-                        Клиент сам видит основную информацию, а администратор меньше отвечает
-                        на однотипные вопросы в переписке.
+                    <h3 data-ru="Сделать понятную витрину" data-en="Create a clear storefront">
+                        Сделать понятную витрину
+                    </h3>
+                    <p data-ru="Mini App можно использовать как аккуратную витрину перед записью: клиент сначала понимает предложение, а потом оставляет заявку или переходит к записи."
+                        data-en="Mini App can work as a clear storefront before booking: the client understands the offer first, then sends a request or moves to booking.">
+                        Mini App можно использовать как аккуратную витрину перед записью: клиент сначала понимает
+                        предложение, а потом оставляет заявку или переходит к записи.
                     </p>
                 </div>
 
                 <div class="benefit-card">
                     <span>03</span>
-                    <h3>Направить клиента к записи</h3>
-                    <p>
-                        Клиент выбирает услугу, мастера, дату и время, после чего заявка приходит
-                        администратору в готовом виде.
+                    <h3 data-ru="Направить клиента к записи" data-en="Guide the client to booking">
+                        Направить клиента к записи
+                    </h3>
+                    <p data-ru="Клиент выбирает услугу, мастера, дату и время, после чего заявка приходит администратору в готовом виде."
+                        data-en="The client selects a service, specialist, date and time, and the request is sent to the administrator.">
+                        Клиент выбирает услугу, мастера, дату и время, после чего заявка приходит администратору в
+                        готовом виде.
                     </p>
                 </div>
             </div>
         </section>
 
         <section class="section" id="servicesSection">
-            <h2>Услуги и цены</h2>
+            <h2 data-ru="Услуги и цены" data-en="Services and prices">
+                Услуги и цены
+            </h2>
+
+            <p class="demo-note"
+                data-ru="Цены в демо указаны как пример. В рабочей версии можно использовать GEL, USD, EUR, AED, TRY или любую другую валюту."
+                data-en="Prices in this demo are examples. A real version can use GEL, USD, EUR, AED, TRY or any other currency.">
+                Цены в демо указаны как пример. В рабочей версии можно использовать GEL, USD, EUR, AED, TRY или любую
+                другую валюту.
+            </p>
 
             <div class="category-tabs">
-                <button type="button" class="category-tab active" data-category="all">Все</button>
-                <button type="button" class="category-tab" data-category="nails">Ногти</button>
-                <button type="button" class="category-tab" data-category="brows">Брови / ресницы</button>
-                <button type="button" class="category-tab" data-category="hair">Волосы</button>
-                <button type="button" class="category-tab" data-category="face">Уход за лицом</button>
+                <button type="button" class="category-tab active" data-category="all" data-ru="Все"
+                    data-en="All">Все</button>
+                <button type="button" class="category-tab" data-category="nails" data-ru="Ногти"
+                    data-en="Nails">Ногти</button>
+                <button type="button" class="category-tab" data-category="brows" data-ru="Брови / ресницы"
+                    data-en="Brows / lashes">Брови / ресницы</button>
+                <button type="button" class="category-tab" data-category="hair" data-en="Hair"
+                    data-ru="Волосы">Волосы</button>
+                <button type="button" class="category-tab" data-category="face" data-ru="Уход за лицом"
+                    data-en="Facial care">Уход за лицом</button>
             </div>
 
             <div class="cards">
                 <div class="card service-card" data-category="nails">
                     <div class="service-top">
-                        <h3>Маникюр с покрытием</h3>
-                        <span>от 2 100 ₽</span>
+                        <h3 data-ru="Маникюр с покрытием" data-en="Manicure with gel polish">Маникюр с покрытием</h3>
+                        <span data-ru="от 80 GEL / ≈ 30 USD" data-en="from 80 GEL / ≈ 30 USD">от 80 GEL / ≈ 30
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Комбинированный маникюр, выравнивание ногтевой пластины и покрытие гель-лаком."
+                        data-en="Combined manicure, nail plate alignment and gel polish.">
                         Комбинированный маникюр, выравнивание ногтевой пластины и покрытие гель-лаком.
                     </p>
                     <div class="service-meta">
-                        <span>1,5–2 часа</span>
-                        <span>Популярная услуга</span>
+                        <span data-ru="1,5–2 часа" data-en="1.5–2 hours">1,5–2 часа</span>
+                        <span data-ru="Популярная услуга" data-en="Popular service">Популярная услуга</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Маникюр с покрытием">
+                    <button type="button" class="service-select-button" data-service-ru="Маникюр с покрытием"
+                        data-service-en="Manicure with gel polish" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
 
                 <div class="card service-card" data-category="nails">
                     <div class="service-top">
-                        <h3>Педикюр</h3>
-                        <span>от 2 500 ₽</span>
+                        <h3 data-ru="Педикюр" data-en="Pedicure">Педикюр</h3>
+                        <span data-ru="от 95 GEL / ≈ 35 USD" data-en="from 95 GEL / ≈ 35 USD">от 95 GEL / ≈ 35
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Обработка стопы и пальчиков, покрытие по желанию клиента."
+                        data-en="Foot and nail care, polish by request.">
                         Обработка стопы и пальчиков, покрытие по желанию клиента.
                     </p>
                     <div class="service-meta">
-                        <span>1,5–2 часа</span>
-                        <span>Уход</span>
+                        <span data-ru="1,5–2 часа" data-en="1.5–2 hours">1,5–2 часа</span>
+                        <span data-ru="Уход" data-en="Care">Уход</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Педикюр">
+                    <button type="button" class="service-select-button" data-service-ru="Педикюр"
+                        data-service-en="Pedicure" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
 
                 <div class="card service-card" data-category="brows">
                     <div class="service-top">
-                        <h3>Коррекция и окрашивание бровей</h3>
-                        <span>от 1 400 ₽</span>
+                        <h3 data-ru="Коррекция и окрашивание бровей" data-en="Brow shaping and tinting">Коррекция и
+                            окрашивание бровей</h3>
+                        <span data-ru="от 55 GEL / ≈ 20 USD" data-en="from 55 GEL / ≈ 20 USD">от 55 GEL / ≈ 20
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Подбор формы, коррекция, окрашивание и рекомендации по домашнему уходу."
+                        data-en="Shape selection, correction, tinting and home care recommendations.">
                         Подбор формы, коррекция, окрашивание и рекомендации по домашнему уходу.
                     </p>
                     <div class="service-meta">
-                        <span>40–60 минут</span>
-                        <span>Быстрая запись</span>
+                        <span data-ru="40–60 минут" data-en="40–60 minutes">40–60 минут</span>
+                        <span data-ru="Быстрая запись" data-en="Quick booking">Быстрая запись</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Коррекция и окрашивание бровей">
+                    <button type="button" class="service-select-button" data-service-ru="Коррекция и окрашивание бровей"
+                        data-service-en="Brow shaping and tinting" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
 
                 <div class="card service-card" data-category="brows">
                     <div class="service-top">
-                        <h3>Ламинирование ресниц</h3>
-                        <span>от 2 200 ₽</span>
+                        <h3 data-ru="Ламинирование ресниц" data-en="Lash lift">Ламинирование ресниц</h3>
+                        <span data-ru="от 85 GEL / ≈ 32 USD" data-en="from 85 GEL / ≈ 32 USD">от 85 GEL / ≈ 32
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Эффект выразительного взгляда без ежедневной укладки и туши."
+                        data-en="An expressive look without daily styling or mascara.">
                         Эффект выразительного взгляда без ежедневной укладки и туши.
                     </p>
                     <div class="service-meta">
-                        <span>1–1,5 часа</span>
-                        <span>Перед отпуском</span>
+                        <span data-ru="1–1,5 часа" data-en="1–1.5 hours">1–1,5 часа</span>
+                        <span data-ru="Перед отпуском" data-en="Before vacation">Перед отпуском</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Ламинирование ресниц">
+                    <button type="button" class="service-select-button" data-service-ru="Ламинирование ресниц"
+                        data-service-en="Lash lift" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
 
                 <div class="card service-card" data-category="hair">
                     <div class="service-top">
-                        <h3>Стрижка и укладка</h3>
-                        <span>от 2 300 ₽</span>
+                        <h3 data-ru="Стрижка и укладка" data-en="Haircut and styling">Стрижка и укладка</h3>
+                        <span data-ru="от 90 GEL / ≈ 34 USD" data-en="from 90 GEL / ≈ 34 USD">от 90 GEL / ≈ 34
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Подбор формы, стрижка и лёгкая укладка с рекомендациями по уходу."
+                        data-en="Shape selection, haircut and light styling with care recommendations.">
                         Подбор формы, стрижка и лёгкая укладка с рекомендациями по уходу.
                     </p>
                     <div class="service-meta">
-                        <span>1–1,5 часа</span>
-                        <span>Консультация</span>
+                        <span data-ru="1–1,5 часа" data-en="1–1.5 hours">1–1,5 часа</span>
+                        <span data-ru="Консультация" data-en="Consultation">Консультация</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Стрижка и укладка">
+                    <button type="button" class="service-select-button" data-service-ru="Стрижка и укладка"
+                        data-service-en="Haircut and styling" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
 
                 <div class="card service-card" data-category="hair">
                     <div class="service-top">
-                        <h3>Окрашивание волос</h3>
-                        <span>от 5 500 ₽</span>
+                        <h3 data-ru="Окрашивание волос" data-en="Hair coloring">Окрашивание волос</h3>
+                        <span data-ru="от 220 GEL / ≈ 82 USD" data-en="from 220 GEL / ≈ 82 USD">от 220 GEL / ≈ 82
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Консультация, подбор оттенка и окрашивание с учётом состояния волос."
+                        data-en="Consultation, shade selection and coloring based on hair condition.">
                         Консультация, подбор оттенка и окрашивание с учётом состояния волос.
                     </p>
                     <div class="service-meta">
-                        <span>2–4 часа</span>
-                        <span>Нужна консультация</span>
+                        <span data-ru="2–4 часа" data-en="2–4 hours">2–4 часа</span>
+                        <span data-ru="Нужна консультация" data-en="Consultation needed">Нужна консультация</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Окрашивание волос">
+                    <button type="button" class="service-select-button" data-service-ru="Окрашивание волос"
+                        data-service-en="Hair coloring" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
 
                 <div class="card service-card" data-category="face">
                     <div class="service-top">
-                        <h3>Уход за лицом</h3>
-                        <span>от 3 000 ₽</span>
+                        <h3 data-ru="Уход за лицом" data-en="Facial care">Уход за лицом</h3>
+                        <span data-ru="от 120 GEL / ≈ 45 USD" data-en="from 120 GEL / ≈ 45 USD">от 120 GEL / ≈ 45
+                            USD</span>
                     </div>
-                    <p>
+                    <p data-ru="Очищение, увлажнение и уходовая процедура под состояние кожи клиента."
+                        data-en="Cleansing, hydration and treatment based on skin condition.">
                         Очищение, увлажнение и уходовая процедура под состояние кожи клиента.
                     </p>
                     <div class="service-meta">
-                        <span>1 час</span>
-                        <span>Индивидуальный уход</span>
+                        <span data-ru="1 час" data-en="1 hour">1 час</span>
+                        <span data-ru="Индивидуальный уход" data-en="Personal care">Индивидуальный уход</span>
                     </div>
-                    <button type="button" class="service-select-button" data-service="Уход за лицом">
+                    <button type="button" class="service-select-button" data-service-ru="Уход за лицом"
+                        data-service-en="Facial care" data-ru="Записаться" data-en="Book">
                         Записаться
                     </button>
                 </div>
@@ -212,26 +359,37 @@
         </section>
 
         <section class="section">
-            <h2>Акции и предложения</h2>
+            <h2 data-ru="Акции и предложения" data-en="Offers">
+                Акции и предложения
+            </h2>
 
             <div class="promo-list">
                 <div class="promo">
-                    <h3>Скидка 10% на первое посещение</h3>
-                    <p>
+                    <h3 data-ru="Скидка 10% на первое посещение" data-en="10% off the first visit">
+                        Скидка 10% на первое посещение
+                    </h3>
+                    <p data-ru="Для новых клиентов при записи через Telegram Mini App."
+                        data-en="For new clients booking through the Telegram Mini App.">
                         Для новых клиентов при записи через Telegram Mini App.
                     </p>
                 </div>
 
                 <div class="promo">
-                    <h3>Комплекс “Брови + ресницы”</h3>
-                    <p>
+                    <h3 data-ru="Комплекс “Брови + ресницы”" data-en="Brows + lashes package">
+                        Комплекс “Брови + ресницы”
+                    </h3>
+                    <p data-ru="Удобный вариант для клиента, который хочет записаться сразу на две услуги."
+                        data-en="A convenient option for a client who wants to book two services at once.">
                         Удобный вариант для клиента, который хочет записаться сразу на две услуги.
                     </p>
                 </div>
 
                 <div class="promo">
-                    <h3>Подарочный сертификат</h3>
-                    <p>
+                    <h3 data-ru="Подарочный сертификат" data-en="Gift certificate">
+                        Подарочный сертификат
+                    </h3>
+                    <p data-ru="В рабочей версии можно добавить отдельный раздел для сертификатов и подарочных услуг."
+                        data-en="A separate section for gift certificates can be added in a real version.">
                         В рабочей версии можно добавить отдельный раздел для сертификатов и подарочных услуг.
                     </p>
                 </div>
@@ -239,117 +397,161 @@
         </section>
 
         <section class="section" id="mastersSection">
-            <h2>Мастера LAVANDA</h2>
+            <h2 data-ru="Мастера LAVANDA" data-en="LAVANDA specialists">
+                Мастера LAVANDA
+            </h2>
 
             <div class="masters">
                 <div class="master-card">
-                    <div class="master-avatar">А</div>
+                    <div class="master-avatar">A</div>
                     <div>
-                        <h3>Анна</h3>
-                        <p>Ногтевой сервис · опыт 5 лет</p>
-                        <span>Маникюр, педикюр, укрепление</span>
+                        <h3 data-ru="Анна" data-en="Anna">Анна</h3>
+                        <p data-ru="Ногтевой сервис · опыт 5 лет" data-en="Nail service · 5 years of experience">
+                            Ногтевой сервис · опыт 5 лет
+                        </p>
+                        <span data-ru="Маникюр, педикюр, укрепление" data-en="Manicure, pedicure, strengthening">
+                            Маникюр, педикюр, укрепление
+                        </span>
                     </div>
                 </div>
 
                 <div class="master-card">
-                    <div class="master-avatar">М</div>
+                    <div class="master-avatar">M</div>
                     <div>
-                        <h3>Мария</h3>
-                        <p>Брови и ресницы · опыт 4 года</p>
-                        <span>Брови, ламинирование, окрашивание</span>
+                        <h3 data-ru="Мария" data-en="Maria">Мария</h3>
+                        <p data-ru="Брови и ресницы · опыт 4 года" data-en="Brows and lashes · 4 years of experience">
+                            Брови и ресницы · опыт 4 года
+                        </p>
+                        <span data-ru="Брови, ламинирование, окрашивание" data-en="Brows, lash lift, tinting">
+                            Брови, ламинирование, окрашивание
+                        </span>
                     </div>
                 </div>
 
                 <div class="master-card">
-                    <div class="master-avatar">Е</div>
+                    <div class="master-avatar">E</div>
                     <div>
-                        <h3>Екатерина</h3>
-                        <p>Волосы и уход · опыт 7 лет</p>
-                        <span>Стрижки, окрашивание, уходовые процедуры</span>
+                        <h3 data-ru="Екатерина" data-en="Ekaterina">Екатерина</h3>
+                        <p data-ru="Волосы и уход · опыт 7 лет" data-en="Hair and care · 7 years of experience">
+                            Волосы и уход · опыт 7 лет
+                        </p>
+                        <span data-ru="Стрижки, окрашивание, уходовые процедуры"
+                            data-en="Haircuts, coloring, care treatments">
+                            Стрижки, окрашивание, уходовые процедуры
+                        </span>
                     </div>
                 </div>
 
                 <div class="master-card">
-                    <div class="master-avatar">С</div>
+                    <div class="master-avatar">S</div>
                     <div>
-                        <h3>София</h3>
-                        <p>Косметология · опыт 6 лет</p>
-                        <span>Уход за лицом, очищение, консультации</span>
+                        <h3 data-ru="София" data-en="Sofia">София</h3>
+                        <p data-ru="Косметология · опыт 6 лет" data-en="Cosmetology · 6 years of experience">
+                            Косметология · опыт 6 лет
+                        </p>
+                        <span data-ru="Уход за лицом, очищение, консультации"
+                            data-en="Facial care, cleansing, consultations">
+                            Уход за лицом, очищение, консультации
+                        </span>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="section online-section">
-            <h2>Если уже есть онлайн-запись</h2>
+            <h2 data-ru="Если уже есть онлайн-запись" data-en="If online booking already exists">
+                Если уже есть онлайн-запись
+            </h2>
 
             <div class="online-card">
-                <h3>Mini App можно использовать вместе с YCLIENTS или другой системой</h3>
-                <p>
-                    Mini App не обязательно заменяет вашу текущую онлайн-запись. Он может быть удобной
-                    Telegram-витриной: клиент смотрит услуги, цены, акции, мастеров, подготовку и FAQ,
-                    а затем переходит к вашей онлайн-записи или оставляет заявку администратору.
+                <h3 data-ru="Mini App можно использовать вместе с сайтом, Instagram или системой записи"
+                    data-en="Mini App can work together with a website, Instagram or booking system">
+                    Mini App можно использовать вместе с сайтом, Instagram или системой записи
+                </h3>
+
+                <p data-ru="Mini App не обязательно заменяет вашу текущую запись. Он может быть удобной Telegram-витриной: клиент смотрит услуги, цены, языки общения, адрес и FAQ, а затем переходит к записи или оставляет заявку администратору."
+                    data-en="Mini App does not have to replace your current booking system. It can work as a Telegram storefront: the client sees services, prices, languages, address and FAQ, then books or sends a request to the administrator.">
+                    Mini App не обязательно заменяет вашу текущую запись. Он может быть удобной Telegram-витриной:
+                    клиент смотрит услуги, цены, языки общения, адрес и FAQ, а затем переходит к записи или оставляет
+                    заявку администратору.
                 </p>
 
                 <div class="online-actions">
-                    <button type="button" class="secondary-button" id="onlineBookingDemoButton">
+                    <button type="button" class="secondary-button" id="onlineBookingDemoButton"
+                        data-ru="Пример кнопки онлайн-записи" data-en="Online booking button example">
                         Пример кнопки онлайн-записи
                     </button>
-                    <button type="button" class="secondary-button" data-scroll-target="requestSection">
+
+                    <button type="button" class="secondary-button" data-scroll-target="requestSection"
+                        data-ru="Оставить заявку администратору" data-en="Send request to administrator">
                         Оставить заявку администратору
                     </button>
                 </div>
 
-                <p class="small-note">
-                    В рабочей версии эту кнопку можно связать с YCLIENTS, CRM, сайтом или другой системой записи.
+                <p class="small-note"
+                    data-ru="В рабочей версии эту кнопку можно связать с сайтом, Instagram, Google Maps, YCLIENTS, CRM или другой системой записи."
+                    data-en="In a real version, this button can lead to a website, Instagram, Google Maps, YCLIENTS, CRM or another booking system.">
+                    В рабочей версии эту кнопку можно связать с сайтом, Instagram, Google Maps, YCLIENTS, CRM или другой
+                    системой записи.
                 </p>
             </div>
         </section>
 
         <section class="section" id="requestSection">
-            <h2>Быстрая заявка</h2>
+            <h2 data-ru="Быстрая заявка" data-en="Quick appointment request">
+                Быстрая заявка
+            </h2>
 
             <form id="requestForm" class="form">
-                <label>
+                <label data-ru="Ваше имя" data-en="Your name">
                     Ваше имя
-                    <input type="text" id="clientName" placeholder="Например, Анна" />
+                    <input type="text" id="clientName" placeholder="Например, Анна" data-placeholder-ru="Например, Анна"
+                        data-placeholder-en="For example, Anna" />
                 </label>
 
-                <label>
+                <label data-ru="Телефон" data-en="Phone">
                     Телефон
-                    <input type="tel" id="clientPhone" placeholder="+7 900 000-00-00" />
+                    <input type="tel" id="clientPhone" placeholder="+000 000 000 000"
+                        data-placeholder-ru="+000 000 000 000" data-placeholder-en="+000 000 000 000" />
                 </label>
 
-                <label>
+                <label data-ru="Какая услуга интересует?" data-en="Which service are you interested in?">
                     Какая услуга интересует?
                     <select id="service">
-                        <option value="Маникюр с покрытием">Маникюр с покрытием</option>
-                        <option value="Педикюр">Педикюр</option>
-                        <option value="Коррекция и окрашивание бровей">Коррекция и окрашивание бровей</option>
-                        <option value="Ламинирование ресниц">Ламинирование ресниц</option>
-                        <option value="Стрижка и укладка">Стрижка и укладка</option>
-                        <option value="Окрашивание волос">Окрашивание волос</option>
-                        <option value="Уход за лицом">Уход за лицом</option>
+                        <option value="Маникюр с покрытием" data-ru="Маникюр с покрытием"
+                            data-en="Manicure with gel polish">Маникюр с покрытием</option>
+                        <option value="Педикюр" data-ru="Педикюр" data-en="Pedicure">Педикюр</option>
+                        <option value="Коррекция и окрашивание бровей" data-ru="Коррекция и окрашивание бровей"
+                            data-en="Brow shaping and tinting">Коррекция и окрашивание бровей</option>
+                        <option value="Ламинирование ресниц" data-ru="Ламинирование ресниц" data-en="Lash lift">
+                            Ламинирование ресниц</option>
+                        <option value="Стрижка и укладка" data-ru="Стрижка и укладка" data-en="Haircut and styling">
+                            Стрижка и укладка</option>
+                        <option value="Окрашивание волос" data-ru="Окрашивание волос" data-en="Hair coloring">
+                            Окрашивание волос</option>
+                        <option value="Уход за лицом" data-ru="Уход за лицом" data-en="Facial care">Уход за лицом
+                        </option>
                     </select>
                 </label>
 
-                <label>
+                <label data-ru="Мастер" data-en="Specialist">
                     Мастер
                     <select id="master">
-                        <option value="Любой мастер">Любой мастер</option>
-                        <option value="Анна">Анна</option>
-                        <option value="Мария">Мария</option>
-                        <option value="Екатерина">Екатерина</option>
-                        <option value="София">София</option>
+                        <option value="Любой мастер" data-ru="Любой мастер" data-en="Any specialist">Любой мастер
+                        </option>
+                        <option value="Анна" data-ru="Анна" data-en="Anna">Анна</option>
+                        <option value="Мария" data-ru="Мария" data-en="Maria">Мария</option>
+                        <option value="Екатерина" data-ru="Екатерина" data-en="Ekaterina">Екатерина</option>
+                        <option value="София" data-ru="София" data-en="Sofia">София</option>
                     </select>
                 </label>
 
-                <label>
+                <label data-ru="Дата визита" data-en="Visit date">
                     Дата визита
                     <input type="date" id="visitDate" />
                 </label>
 
-                <label>
+                <label data-ru="Время" data-en="Preferred time">
                     Время
                     <select id="preferredTime">
                         <option value="10:00">10:00</option>
@@ -357,56 +559,65 @@
                         <option value="14:00">14:00</option>
                         <option value="16:00">16:00</option>
                         <option value="18:00">18:00</option>
-                        <option value="Хочу подобрать другое время">Хочу подобрать другое время</option>
+                        <option value="Хочу подобрать другое время" data-ru="Хочу подобрать другое время"
+                            data-en="I want another time">Хочу подобрать другое время</option>
                     </select>
                 </label>
 
-                <p class="demo-note">
-                    В демо-версии дата и время отправляются администратору для подтверждения.
-                    В рабочей версии можно подключить автоматическую проверку свободных слотов
-                    или переход к вашей онлайн-записи.
+                <p class="demo-note"
+                    data-ru="В демо-версии дата и время отправляются администратору для подтверждения. В рабочей версии можно подключить автоматическую проверку свободных слотов или переход к вашей онлайн-записи."
+                    data-en="In this demo, date and time are sent to the administrator for confirmation. In a real version, automatic slot checking or a link to your booking system can be added.">
+                    В демо-версии дата и время отправляются администратору для подтверждения. В рабочей версии можно
+                    подключить автоматическую проверку свободных слотов или переход к вашей онлайн-записи.
                 </p>
 
-                <label>
+                <label data-ru="Комментарий" data-en="Comment">
                     Комментарий
-                    <textarea id="comment"
-                        placeholder="Например, хочу нюдовый оттенок или нужна консультация"></textarea>
+                    <textarea id="comment" placeholder="Например, хочу нюдовый оттенок или нужна консультация"
+                        data-placeholder-ru="Например, хочу нюдовый оттенок или нужна консультация"
+                        data-placeholder-en="For example, I want a nude shade or need a consultation"></textarea>
                 </label>
 
-                <button type="submit" class="main-button">
+                <button type="submit" class="main-button" data-ru="Отправить заявку" data-en="Send request">
                     Отправить заявку
                 </button>
             </form>
         </section>
 
         <section class="section">
-            <h2>Подготовка к процедурам</h2>
+            <h2 data-ru="Подготовка к процедурам" data-en="Before your visit">
+                Подготовка к процедурам
+            </h2>
 
             <div class="prep-list">
                 <div class="prep-card">
-                    <h3>Перед маникюром</h3>
-                    <p>
+                    <h3 data-ru="Перед маникюром" data-en="Before manicure">Перед маникюром</h3>
+                    <p data-ru="Не наносите плотные масла за несколько часов до процедуры, если планируется покрытие."
+                        data-en="Avoid heavy oils a few hours before the procedure if gel polish is planned.">
                         Не наносите плотные масла за несколько часов до процедуры, если планируется покрытие.
                     </p>
                 </div>
 
                 <div class="prep-card">
-                    <h3>Перед окрашиванием</h3>
-                    <p>
+                    <h3 data-ru="Перед окрашиванием" data-en="Before hair coloring">Перед окрашиванием</h3>
+                    <p data-ru="Предупредите мастера об аллергиях, предыдущих окрашиваниях и состоянии волос."
+                        data-en="Tell the specialist about allergies, previous coloring and your hair condition.">
                         Предупредите мастера об аллергиях, предыдущих окрашиваниях и состоянии волос.
                     </p>
                 </div>
 
                 <div class="prep-card">
-                    <h3>Перед бровями</h3>
-                    <p>
+                    <h3 data-ru="Перед бровями" data-en="Before brow service">Перед бровями</h3>
+                    <p data-ru="Не используйте активные пилинги и кислоты в зоне бровей за 24 часа до процедуры."
+                        data-en="Avoid active peels and acids around the brow area 24 hours before the procedure.">
                         Не используйте активные пилинги и кислоты в зоне бровей за 24 часа до процедуры.
                     </p>
                 </div>
 
                 <div class="prep-card">
-                    <h3>Перед уходом за лицом</h3>
-                    <p>
+                    <h3 data-ru="Перед уходом за лицом" data-en="Before facial care">Перед уходом за лицом</h3>
+                    <p data-ru="Расскажите специалисту о чувствительности кожи, аллергиях и активном домашнем уходе."
+                        data-en="Tell the specialist about skin sensitivity, allergies and active home care.">
                         Расскажите специалисту о чувствительности кожи, аллергиях и активном домашнем уходе.
                     </p>
                 </div>
@@ -414,64 +625,90 @@
         </section>
 
         <section class="section" id="faqSection">
-            <h2>Частые вопросы</h2>
+            <h2 data-ru="Частые вопросы" data-en="FAQ">
+                Частые вопросы
+            </h2>
 
             <div class="faq-list">
                 <button type="button" class="faq-item">
-                    <span>Можно ли перенести запись?</span>
+                    <span data-ru="Можно ли сделать Mini App на нескольких языках?"
+                        data-en="Can Mini App be multilingual?">
+                        Можно ли сделать Mini App на нескольких языках?
+                    </span>
                     <strong>+</strong>
                 </button>
-                <div class="faq-answer">
-                    Да, клиент может написать администратору. В рабочей версии можно добавить отдельный сценарий
-                    переноса записи.
+                <div class="faq-answer"
+                    data-ru="Да. Можно сделать RU / EN, добавить местный язык или другие языки, которые нужны вашему бизнесу."
+                    data-en="Yes. It can be RU / EN, a local language or any other languages your business needs.">
+                    Да. Можно сделать RU / EN, добавить местный язык или другие языки, которые нужны вашему бизнесу.
                 </div>
 
                 <button type="button" class="faq-item">
-                    <span>Нужна ли предоплата?</span>
+                    <span data-ru="Можно ли указать любую валюту?" data-en="Can any currency be shown?">
+                        Можно ли указать любую валюту?
+                    </span>
                     <strong>+</strong>
                 </button>
-                <div class="faq-answer">
-                    Это зависит от правил салона. В Mini App можно добавить отдельный блок с условиями записи и отмены.
+                <div class="faq-answer"
+                    data-ru="Да. В рабочей версии можно указать GEL, USD, EUR, AED, TRY или любую другую валюту."
+                    data-en="Yes. A real version can show GEL, USD, EUR, AED, TRY or any other currency.">
+                    Да. В рабочей версии можно указать GEL, USD, EUR, AED, TRY или любую другую валюту.
                 </div>
 
                 <button type="button" class="faq-item">
-                    <span>Можно ли подключить онлайн-запись?</span>
+                    <span data-ru="Можно ли добавить Google Maps?" data-en="Can Google Maps be added?">
+                        Можно ли добавить Google Maps?
+                    </span>
                     <strong>+</strong>
                 </button>
-                <div class="faq-answer">
-                    Да. Mini App можно связать ссылкой на YCLIENTS или другую систему. Полная автоматическая интеграция
-                    делается отдельным этапом.
+                <div class="faq-answer"
+                    data-ru="Да. Можно добавить кнопку с реальным адресом салона, студии или клиники в любой стране."
+                    data-en="Yes. A button with the real address of a salon, studio or clinic in any country can be added.">
+                    Да. Можно добавить кнопку с реальным адресом салона, студии или клиники в любой стране.
                 </div>
 
                 <button type="button" class="faq-item">
-                    <span>Что делать, если нет подходящего времени?</span>
+                    <span data-ru="Можно ли подключить онлайн-запись?" data-en="Can online booking be connected?">
+                        Можно ли подключить онлайн-запись?
+                    </span>
                     <strong>+</strong>
                 </button>
-                <div class="faq-answer">
+                <div class="faq-answer"
+                    data-ru="Да. Mini App можно связать с сайтом, Instagram, YCLIENTS, CRM, Google Maps или другой системой. Полная автоматическая интеграция делается отдельным этапом."
+                    data-en="Yes. Mini App can be connected to a website, Instagram, YCLIENTS, CRM, Google Maps or another system. Full automatic integration is a separate step.">
+                    Да. Mini App можно связать с сайтом, Instagram, YCLIENTS, CRM, Google Maps или другой системой.
+                    Полная автоматическая интеграция делается отдельным этапом.
+                </div>
+
+                <button type="button" class="faq-item">
+                    <span data-ru="Что делать, если нет подходящего времени?"
+                        data-en="What if there is no suitable time?">
+                        Что делать, если нет подходящего времени?
+                    </span>
+                    <strong>+</strong>
+                </button>
+                <div class="faq-answer"
+                    data-ru="Клиент может выбрать вариант “Хочу подобрать другое время”, и администратор свяжется для уточнения."
+                    data-en="The client can choose “I want another time”, and the administrator will contact them to clarify.">
                     Клиент может выбрать вариант “Хочу подобрать другое время”, и администратор свяжется для уточнения.
-                </div>
-
-                <button type="button" class="faq-item">
-                    <span>Можно ли добавить личный кабинет?</span>
-                    <strong>+</strong>
-                </button>
-                <div class="faq-answer">
-                    Да, следующим этапом можно добавить историю записей, бонусы, повторную запись и персональные
-                    предложения.
                 </div>
             </div>
         </section>
 
         <section class="section">
-            <h2>Как это работает для салона</h2>
+            <h2 data-ru="Как это работает для бизнеса" data-en="How it works for the business">
+                Как это работает для бизнеса
+            </h2>
 
             <div class="steps">
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <div>
-                        <h3>Клиент выбирает услугу</h3>
-                        <p>
-                            В Mini App клиент смотрит услуги, цены, мастеров, акции и подготовку к процедурам.
+                        <h3 data-ru="Клиент открывает Mini App" data-en="Client opens Mini App">Клиент открывает Mini
+                            App</h3>
+                        <p data-ru="Он видит услуги, цены, адрес, языки общения, мастеров, акции и FAQ."
+                            data-en="They see services, prices, address, languages, specialists, offers and FAQ.">
+                            Он видит услуги, цены, адрес, языки общения, мастеров, акции и FAQ.
                         </p>
                     </div>
                 </div>
@@ -479,8 +716,10 @@
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <div>
-                        <h3>Заявка приходит администратору</h3>
-                        <p>
+                        <h3 data-ru="Клиент оставляет заявку" data-en="Client sends a request">Клиент оставляет заявку
+                        </h3>
+                        <p data-ru="Администратор получает имя, телефон, услугу, дату, время и Telegram-данные клиента."
+                            data-en="The administrator receives name, phone, service, date, time and Telegram details.">
                             Администратор получает имя, телефон, услугу, дату, время и Telegram-данные клиента.
                         </p>
                     </div>
@@ -489,8 +728,12 @@
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div>
-                        <h3>Запись подтверждается одной кнопкой</h3>
-                        <p>
+                        <h3 data-ru="Запись подтверждается одной кнопкой"
+                            data-en="Appointment is confirmed with one button">
+                            Запись подтверждается одной кнопкой
+                        </h3>
+                        <p data-ru="Администратор может подтвердить заявку или отметить, что нужно связаться с клиентом."
+                            data-en="The administrator can confirm the request or mark that the client should be contacted.">
                             Администратор может подтвердить заявку или отметить, что нужно связаться с клиентом.
                         </p>
                     </div>
@@ -499,8 +742,11 @@
                 <div class="step-card">
                     <div class="step-number">4</div>
                     <div>
-                        <h3>Клиент получает уведомление</h3>
-                        <p>
+                        <h3 data-ru="Клиент получает уведомление" data-en="Client receives a notification">
+                            Клиент получает уведомление
+                        </h3>
+                        <p data-ru="После подтверждения клиент получает сообщение в Telegram со статусом своей записи."
+                            data-en="After confirmation, the client receives a Telegram message with the appointment status.">
                             После подтверждения клиент получает сообщение в Telegram со статусом своей записи.
                         </p>
                     </div>
@@ -509,40 +755,49 @@
         </section>
 
         <section class="section">
-            <h2>Что можно подключить дальше</h2>
+            <h2 data-ru="Что можно подключить дальше" data-en="What can be added later">
+                Что можно подключить дальше
+            </h2>
 
             <div class="cabinet-preview">
-                <h3>Расширение Mini App</h3>
-                <p>
-                    В рабочей версии можно добавить личный кабинет, историю записей, бонусы,
-                    сохранение заявок в Google Sheets, CRM или интеграцию с онлайн-записью.
+                <h3 data-ru="Расширение Mini App" data-en="Mini App extensions">
+                    Расширение Mini App
+                </h3>
+
+                <p data-ru="В рабочей версии можно добавить личный кабинет, историю записей, бонусы, сохранение заявок в Google Sheets, CRM или интеграцию с онлайн-записью."
+                    data-en="A real version can include a personal account, booking history, bonuses, Google Sheets, CRM or booking system integration.">
+                    В рабочей версии можно добавить личный кабинет, историю записей, бонусы, сохранение заявок в Google
+                    Sheets, CRM или интеграцию с онлайн-записью.
                 </p>
 
                 <div class="cabinet-list">
-                    <span>История записей</span>
-                    <span>Бонусы и скидки</span>
-                    <span>Google Sheets / CRM</span>
-                    <span>YCLIENTS / онлайн-запись</span>
-                    <span>AI-ответы</span>
+                    <span data-ru="История записей" data-en="Booking history">История записей</span>
+                    <span data-ru="Бонусы и скидки" data-en="Bonuses and discounts">Бонусы и скидки</span>
+                    <span data-ru="Google Sheets / CRM" data-en="Google Sheets / CRM">Google Sheets / CRM</span>
+                    <span data-ru="Онлайн-запись" data-en="Online booking">Онлайн-запись</span>
+                    <span data-ru="AI-ответы" data-en="AI replies">AI-ответы</span>
                 </div>
             </div>
         </section>
     </div>
+
     <nav class="bottom-nav">
         <div class="bottom-nav-inner">
-            <button type="button" class="bottom-nav-button" data-scroll-top="true">
+            <button type="button" class="bottom-nav-button" data-scroll-top="true" data-ru="Главная" data-en="Home">
                 Главная
             </button>
 
-            <button type="button" class="bottom-nav-button" data-scroll-target="servicesSection">
+            <button type="button" class="bottom-nav-button" data-scroll-target="servicesSection" data-ru="Услуги"
+                data-en="Services">
                 Услуги
             </button>
 
-            <button type="button" class="bottom-nav-button nav-main-action" data-scroll-target="requestSection">
+            <button type="button" class="bottom-nav-button nav-main-action" data-scroll-target="requestSection"
+                data-ru="Запись" data-en="Book">
                 Запись
             </button>
 
-            <button type="button" class="bottom-nav-button" data-scroll-target="faqSection">
+            <button type="button" class="bottom-nav-button" data-scroll-target="faqSection" data-ru="FAQ" data-en="FAQ">
                 FAQ
             </button>
 
@@ -551,7 +806,8 @@
             </button>
         </div>
     </nav>
-    <script src="app.js?v=2"></script>
+
+    <script src="app.js?v=5"></script>
 </body>
 
 </html>
