@@ -704,3 +704,36 @@ body {
         font-size: 12px;
     }
 }
+
+.booking-intro {
+    background: linear-gradient(135deg, #ffffff, #f7f1ff);
+    border-radius: 22px;
+    padding: 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 24px rgba(92, 63, 155, 0.10);
+}
+
+.booking-intro h3 {
+    margin: 0 0 8px;
+    color: #5d3fc3;
+    font-size: 17px;
+}
+
+.booking-intro p {
+    margin: 0;
+    color: #5f5870;
+    line-height: 1.45;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 380px) {
+    .booking-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

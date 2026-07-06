@@ -498,88 +498,125 @@
         </section>
 
         <section class="section" id="requestSection">
-            <h2 data-ru="Быстрая заявка" data-en="Quick appointment request">
-                Быстрая заявка
+            <h2 data-ru="Демо-заявка на запись" data-en="Demo appointment request">
+                Демо-заявка на запись
             </h2>
 
+            <div class="booking-intro">
+                <h3 data-ru="Клиент может оставить заявку прямо внутри Mini App"
+                    data-en="The client can send a request inside Mini App">
+                    Клиент может оставить заявку прямо внутри Mini App
+                </h3>
+
+                <p data-ru="В этом демо можно выбрать услугу, мастера, дату и удобное время. После отправки заявка приходит администратору в Telegram."
+                    data-en="In this demo, the client can choose a service, specialist, date and preferred time. After sending, the request goes to the administrator in Telegram.">
+                    В этом демо можно выбрать услугу, мастера, дату и удобное время. После отправки заявка приходит
+                    администратору в Telegram.
+                </p>
+            </div>
+
             <form id="requestForm" class="form">
-                <label data-ru="Ваше имя" data-en="Your name">
-                    Ваше имя
+                <label>
+                    <span data-ru="Ваше имя" data-en="Your name">Ваше имя</span>
                     <input type="text" id="clientName" placeholder="Например, Анна" data-placeholder-ru="Например, Анна"
                         data-placeholder-en="For example, Anna" />
                 </label>
 
-                <label data-ru="Телефон" data-en="Phone">
-                    Телефон
+                <label>
+                    <span data-ru="Телефон" data-en="Phone">Телефон</span>
                     <input type="tel" id="clientPhone" placeholder="+000 000 000 000"
                         data-placeholder-ru="+000 000 000 000" data-placeholder-en="+000 000 000 000" />
                 </label>
 
-                <label data-ru="Какая услуга интересует?" data-en="Which service are you interested in?">
-                    Какая услуга интересует?
+                <label>
+                    <span data-ru="Услуга" data-en="Service">Услуга</span>
                     <select id="service">
                         <option value="Маникюр с покрытием" data-ru="Маникюр с покрытием"
-                            data-en="Manicure with gel polish">Маникюр с покрытием</option>
-                        <option value="Педикюр" data-ru="Педикюр" data-en="Pedicure">Педикюр</option>
+                            data-en="Manicure with gel polish">
+                            Маникюр с покрытием
+                        </option>
+                        <option value="Педикюр" data-ru="Педикюр" data-en="Pedicure">
+                            Педикюр
+                        </option>
                         <option value="Коррекция и окрашивание бровей" data-ru="Коррекция и окрашивание бровей"
-                            data-en="Brow shaping and tinting">Коррекция и окрашивание бровей</option>
+                            data-en="Brow shaping and tinting">
+                            Коррекция и окрашивание бровей
+                        </option>
                         <option value="Ламинирование ресниц" data-ru="Ламинирование ресниц" data-en="Lash lift">
-                            Ламинирование ресниц</option>
+                            Ламинирование ресниц
+                        </option>
                         <option value="Стрижка и укладка" data-ru="Стрижка и укладка" data-en="Haircut and styling">
-                            Стрижка и укладка</option>
+                            Стрижка и укладка
+                        </option>
                         <option value="Окрашивание волос" data-ru="Окрашивание волос" data-en="Hair coloring">
-                            Окрашивание волос</option>
-                        <option value="Уход за лицом" data-ru="Уход за лицом" data-en="Facial care">Уход за лицом
+                            Окрашивание волос
+                        </option>
+                        <option value="Уход за лицом" data-ru="Уход за лицом" data-en="Facial care">
+                            Уход за лицом
                         </option>
                     </select>
                 </label>
 
-                <label data-ru="Мастер" data-en="Specialist">
-                    Мастер
+                <label>
+                    <span data-ru="Мастер" data-en="Specialist">Мастер</span>
                     <select id="master">
-                        <option value="Любой мастер" data-ru="Любой мастер" data-en="Any specialist">Любой мастер
+                        <option value="Любой мастер" data-ru="Любой мастер" data-en="Any specialist">
+                            Любой мастер
                         </option>
-                        <option value="Анна" data-ru="Анна" data-en="Anna">Анна</option>
-                        <option value="Мария" data-ru="Мария" data-en="Maria">Мария</option>
-                        <option value="Екатерина" data-ru="Екатерина" data-en="Ekaterina">Екатерина</option>
-                        <option value="София" data-ru="София" data-en="Sofia">София</option>
+                        <option value="Анна" data-ru="Анна" data-en="Anna">
+                            Анна
+                        </option>
+                        <option value="Мария" data-ru="Мария" data-en="Maria">
+                            Мария
+                        </option>
+                        <option value="Екатерина" data-ru="Екатерина" data-en="Ekaterina">
+                            Екатерина
+                        </option>
+                        <option value="София" data-ru="София" data-en="Sofia">
+                            София
+                        </option>
                     </select>
                 </label>
 
-                <label data-ru="Дата визита" data-en="Visit date">
-                    Дата визита
-                    <input type="date" id="visitDate" />
-                </label>
+                <div class="booking-grid">
+                    <label>
+                        <span data-ru="Дата визита" data-en="Visit date">Дата визита</span>
+                        <input type="date" id="visitDate" />
+                    </label>
 
-                <label data-ru="Время" data-en="Preferred time">
-                    Время
-                    <select id="preferredTime">
-                        <option value="10:00">10:00</option>
-                        <option value="12:00">12:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="16:00">16:00</option>
-                        <option value="18:00">18:00</option>
-                        <option value="Хочу подобрать другое время" data-ru="Хочу подобрать другое время"
-                            data-en="I want another time">Хочу подобрать другое время</option>
-                    </select>
-                </label>
+                    <label>
+                        <span data-ru="Время" data-en="Preferred time">Время</span>
+                        <select id="preferredTime">
+                            <option value="10:00">10:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="Хочу подобрать другое время" data-ru="Хочу подобрать другое время"
+                                data-en="I want another time">
+                                Хочу подобрать другое время
+                            </option>
+                        </select>
+                    </label>
+                </div>
 
                 <p class="demo-note"
-                    data-ru="В демо-версии дата и время отправляются администратору для подтверждения. В рабочей версии можно подключить автоматическую проверку свободных слотов или переход к вашей онлайн-записи."
-                    data-en="In this demo, date and time are sent to the administrator for confirmation. In a real version, automatic slot checking or a link to your booking system can be added.">
-                    В демо-версии дата и время отправляются администратору для подтверждения. В рабочей версии можно
-                    подключить автоматическую проверку свободных слотов или переход к вашей онлайн-записи.
+                    data-ru="В демо дата и время отправляются администратору для подтверждения. В рабочей версии можно подключить реальные свободные слоты, онлайн-запись или CRM."
+                    data-en="In this demo, date and time are sent to the administrator for confirmation. In a real version, real available slots, online booking or CRM can be connected.">
+                    В демо дата и время отправляются администратору для подтверждения. В рабочей версии можно подключить
+                    реальные свободные слоты, онлайн-запись или CRM.
                 </p>
 
-                <label data-ru="Комментарий" data-en="Comment">
-                    Комментарий
+                <label>
+                    <span data-ru="Комментарий" data-en="Comment">Комментарий</span>
                     <textarea id="comment" placeholder="Например, хочу нюдовый оттенок или нужна консультация"
                         data-placeholder-ru="Например, хочу нюдовый оттенок или нужна консультация"
                         data-placeholder-en="For example, I want a nude shade or need a consultation"></textarea>
                 </label>
 
-                <button type="submit" class="main-button" data-ru="Отправить заявку" data-en="Send request">
-                    Отправить заявку
+                <button type="submit" class="main-button" data-ru="Отправить заявку в Telegram"
+                    data-en="Send request to Telegram">
+                    Отправить заявку в Telegram
                 </button>
             </form>
         </section>
