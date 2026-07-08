@@ -267,6 +267,7 @@ body {
     justify-content: space-between;
     gap: 12px;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .card h3,
@@ -287,12 +288,19 @@ body {
     display: inline-block;
     color: #d96fd4;
     font-weight: 800;
-    white-space: nowrap;
 }
 
 .service-top span {
-    text-align: right;
+    white-space: normal;
+    text-align: left;
+    line-height: 1.25;
+}
+
+.service-top span {
+    text-align: left;
     font-size: 14px;
+    white-space: normal;
+    line-height: 1.25;
 }
 
 .service-meta {
@@ -776,4 +784,20 @@ body {
     font-size: 12px;
     font-weight: 800;
     text-align: center;
+}
+
+@media (max-width: 430px) {
+    .service-top {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .service-top h3 {
+        margin-bottom: 2px;
+    }
+
+    .service-top span {
+        text-align: left;
+        max-width: 100%;
+    }
 }
